@@ -22,6 +22,9 @@ const setCookie = function setCookie_by_name_value_period(name, value, period) {
   date.setDate(date.getDate() + period);
   let Cookie = `${name}=${value};Expires=${date.toUTCString()}`;
   document.cookie = Cookie;
+  //document.getElementsByClassName("content_dummy").reload();
+  console.log("추가");
+  //$(".content_dummy").load(location.href + " .content_dummy");
 };
 
 var getCookie = function (url) {
@@ -31,8 +34,13 @@ var getCookie = function (url) {
   var url1 = `${url}`;
   var addcookie = url1.replace("https://www.fmkorea.com/", "");
   var nowcookie = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)")[2];
-  console.log(`${nowcookie}.${addcookie}`);
-  setCookie("readed_documents", `${nowcookie}.${addcookie}`, 7);
+  console.log(`${nowcookie}`);
+  if (!value[2].includes(`${addcookie}`)) {
+    setCookie("readed_documents", `${nowcookie}.${addcookie}`, 7);
+  } else {
+    console.log("이미 본,,");
+  }
+
   //document.querySelector(".content_dummy").reload();
   //$(".content_dummy").load(document.URL + " .content_dummy");
   // return value ? value[2] : null;
@@ -436,8 +444,6 @@ document.addEventListener("click", function (e) {
     if (e.target.id == "container") {
       document.querySelector("#getarticle").remove();
       document.body.style.overflow = "scroll";
-      clicktitle = document.querySelectorAll(".title.hotdeal_var8");
-      clicktitle2 = document.querySelectorAll(".title");
       articlecheck = false;
     } else if (e.target == "html") {
       console.log("html");
@@ -462,22 +468,22 @@ document.addEventListener("click", function (e) {
   }
 });
 
-for (const title1 of clicktitle) {
-  title1.addEventListener(
+for (const title12 of clicktitle) {
+  title12.addEventListener(
     "contextmenu",
-    function (e) {
-      e.preventDefault();
+    function () {
       if (document.querySelector("#getarticle") == null) {
-        getdiv(title1.querySelector("a").href);
-        console.log(title1.querySelector("a").href);
-        getCookie(title1.querySelector("a").href);
+        getdiv(title12.querySelector("a").href);
+        console.log(title12.querySelector("a").href);
+        getCookie(title12.querySelector("a").href);
+        title12.querySelector("a").className = "visited";
       }
       //var expage = document.body.innerHTML;
-      //location.replace(title1.querySelector("a").href);
-      //window.open(title1.querySelector("a").href);
+      //location.replace(title12.querySelector("a").href);
+      //window.open(title12.querySelector("a").href);
 
-      //window.open(title1.querySelector("a").href, "_blank");
-      //alert(title1.querySelector("a").href);
+      //window.open(title12.querySelector("a").href, "_blank");
+      //alert(title12.querySelector("a").href);
       // Do what you want with click event
     },
     false
@@ -507,11 +513,11 @@ for (const title2 of clicktitle2) {
         console.log(title2.href);
       }
       //var expage = document.body.innerHTML;
-      //location.replace(title1.querySelector("a").href);
-      //window.open(title1.querySelector("a").href);
+      //location.replace(title12.querySelector("a").href);
+      //window.open(title12.querySelector("a").href);
 
-      //window.open(title1.querySelector("a").href, "_blank");
-      //alert(title1.querySelector("a").href);
+      //window.open(title12.querySelector("a").href, "_blank");
+      //alert(title12.querySelector("a").href);
       // Do what you want with click event
     },
     false
@@ -536,8 +542,8 @@ window.onkeydown = event => {
     if (articlecheck == true) {
       document.querySelector("#getarticle").remove();
       document.body.style.overflow = "scroll";
-      clicktitle = document.querySelectorAll(".title.hotdeal_var8");
-      clicktitle2 = document.querySelectorAll(".title");
+      location.reload();
+
       articlecheck = false;
     }
   }
