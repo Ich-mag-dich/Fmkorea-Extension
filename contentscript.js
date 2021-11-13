@@ -35,8 +35,22 @@ function getdiv(link) {
         var choo = document.createElement("div");
         var choobanresult = document.createElement("div");
         var ban = document.createElement("div");
+        var username = document.createElement("div");
+        var looknum = document.createElement("div");
+        var uploadDate = document.createElement("div");
 
+        // .side.fr > span:nth-child(1)
+        looknum.innerHTML = `${
+          el.querySelector(".side.fr > span:nth-child(1)").innerHTML
+        }`;
+        looknum.style.textAlign = "right";
+        uploadDate.innerHTML = `${el.querySelector(".date.m_no").innerHTML}`;
+        uploadDate.style.textAlign = "right";
         //choo.append(el.querySelector(".vote_label"));
+        username.innerHTML = `<br>${el.querySelector(".side").innerHTML}`;
+        username.id = "username";
+        looknum.style.marginRight = "40px";
+        uploadDate.style.marginRight = "40px";
         choobanresult.innerHTML = `추천수: ${
           el.querySelector(".btn_img.new_voted_count").innerText
         } <br><br><br><br>`;
@@ -49,7 +63,7 @@ function getdiv(link) {
         try {
           replDiv.innerHTML = `<br><br>${
             el.querySelector("#cmtPosition > ul").innerHTML
-          }`;
+          }<br><br>`;
         } catch {
           replDiv.innerHTML = "<br><br>댓글이 없어용 ;ㅅ;";
         }
@@ -60,13 +74,16 @@ function getdiv(link) {
         choobanresult.style.fontSize = "15px";
         choobanresult.style.fontWeight = "bold";
         //ban.style.display = "inline-block";
-
+        username.style.marginLeft = "40px";
         //chooban.append("<br><br><br>");
         chooban.append(choo);
         chooban.append(choobanresult);
         chooban.append(ban);
 
         articleFrame.appendChild(atcTitle);
+        articleFrame.appendChild(username);
+        articleFrame.appendChild(uploadDate);
+        articleFrame.appendChild(looknum);
         articleFrame.appendChild(articleDiv);
         articleFrame.appendChild(chooban);
         replFrame.appendChild(replDiv);
@@ -130,6 +147,21 @@ function getdiv(link) {
 
         document.querySelector("#header").append(frame);
         articlecheck = true;
+        document.querySelector("#username > a").style.color = "black";
+        document.querySelector("#username > a").style.textDcoration = "none";
+        var imgttt = true;
+        try {
+          var num = 0;
+          while (imgttt) {
+            document.querySelectorAll("img")[num].style.maxWidth = "820px";
+            num++;
+          }
+        } catch (e) {
+          num = 0;
+          imgttt = false;
+          console.log(e);
+        }
+
         try {
           var hhh = document.querySelector(".rd_body.clear").offsetHeight;
         } catch (e) {
@@ -210,6 +242,21 @@ function getdiv(link) {
           } catch (e) {
             console.log(e);
           }
+          try {
+            var aTag = document.getElementsByClassName("re_comment");
+          } catch (e) {
+            console.log(e);
+          }
+          var tttt = true;
+          try {
+            while (tttt) {
+              document.querySelector(".fdb_nav.img_tx > a").remove();
+              console.log("지우기", i);
+            }
+          } catch (e) {
+            tttt = false;
+            console.log(e);
+          }
         }
       } //document.querySelector("#getarticle")
     }
@@ -224,6 +271,8 @@ document.addEventListener("click", function (e) {
     if (e.target.id == "container") {
       document.querySelector("#getarticle").remove();
       articlecheck = false;
+    } else if (e.target == "html") {
+      console.log("html");
     }
     //alert(e.target.id, e.target.className);
     // if (
