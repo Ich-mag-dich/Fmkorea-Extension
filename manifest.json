@@ -16,7 +16,8 @@
       "tabCapture"
     ],
     "browser_action": {
-        "default_icon": "./src/img/icon.png"
+        "default_icon": "./src/img/icon.png",
+        "default_popup": "./popup.html"
       },
     "options_page": "options.html",
     "externally_connectable": {

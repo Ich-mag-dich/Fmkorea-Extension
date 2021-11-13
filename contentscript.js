@@ -38,8 +38,16 @@ function getdiv(link) {
         var username = document.createElement("div");
         var looknum = document.createElement("div");
         var uploadDate = document.createElement("div");
+        var repPg = document.createElement("div");
 
-        // .side.fr > span:nth-child(1)
+        // #cmtPosition > div.fdb_tag.bg_f_f9.css3pie > div
+        try {
+          repPg.innerHTML = el.querySelector(
+            "#cmtPosition > div.fdb_tag.bg_f_f9.css3pie > div"
+          ).innerHTML;
+        } catch (e) {
+          console.log(e);
+        }
         looknum.innerHTML = `${
           el.querySelector(".side.fr > span:nth-child(1)").innerHTML
         }`;
@@ -54,6 +62,9 @@ function getdiv(link) {
         choobanresult.innerHTML = `추천수: ${
           el.querySelector(".btn_img.new_voted_count").innerText
         } <br><br><br><br>`;
+        choobanresult.style.fontFamily = `"Noto Sans CJK KR", sans-serif`;
+        choobanresult.style.fontSize = "24px";
+        choobanresult.style.fontWeight = "bold";
         //ban.append(el.querySelector(".vote3"));
         atcTitle.innerHTML = `<br><br>${
           el.querySelector(
@@ -66,12 +77,15 @@ function getdiv(link) {
           }<br><br>`;
         } catch {
           replDiv.innerHTML = "<br><br>댓글이 없어용 ;ㅅ;";
+          replDiv.style.textAlign = "center";
+          replDiv.style.fontFamily = `"Noto Sans CJK KR", sans-serif`;
+          replDiv.style.fontSize = "24px";
+          replDiv.style.fontWeight = "bold";
         }
         replDiv.style.listStyle = "none";
         replDiv.style.marginLeft = "20px";
         //choo.style.display = "inline-block";
         choobanresult.style.textAlign = "center";
-        choobanresult.style.fontSize = "15px";
         choobanresult.style.fontWeight = "bold";
         //ban.style.display = "inline-block";
         username.style.marginLeft = "40px";
@@ -86,19 +100,21 @@ function getdiv(link) {
         articleFrame.appendChild(looknum);
         articleFrame.appendChild(articleDiv);
         articleFrame.appendChild(chooban);
+        replFrame.appendChild(repPg);
         replFrame.appendChild(replDiv);
         frame.appendChild(articleFrame);
         frame.appendChild(replFrame);
 
         //#bd_capture > div.rd_body.clear > article > div
-        atcTitle.style.textAlign = "center";
+        atcTitle.style.textAlign = "left";
         atcTitle.style.marginTop = "25px";
         //atcTitle.style.position = "absolute";
         atcTitle.style.marginLeft = "40px";
         atcTitle.style.fontSize = "24px";
         atcTitle.style.fontWeight = "bold";
         atcTitle.style.letterSpacing = "-1.66px";
-        atcTitle.style.fontFamily = `돋움,Dotum,Arial,나눔고딕,"Malgun Gothic",맑은고딕,굴림,sans-serif;`;
+        atcTitle.id = "arcTitle";
+        atcTitle.style.fontFamily = "Noto Sans CJK KR, sans-serif;";
         //    font-size: 24px
         // font-weight: bold;;
         // letter-spacing: -1.66px;
@@ -139,14 +155,18 @@ function getdiv(link) {
         frame.style.position = "absolute";
         frame.style.marginLeft = "21%";
         frame.style.marginRight = "auto";
+        replFrame.style.marginBottom = "200px";
         frame.id = "getarticle";
         frame.style.zIndex = "101";
         frame.style.boxShadow = "rgba(109, 109, 109, 0.5) 0 0 0 9999px";
         frame.style.backgroundColor = "rgba(109, 109, 109, 0.5)";
-        frame.style.fontFamily = `돋움,Dotum,Arial,나눔고딕,"Malgun Gothic",맑은고딕,굴림,sans-serif;`;
 
         document.querySelector("#header").append(frame);
         articlecheck = true;
+        document.querySelector(
+          "#arcTitle"
+        ).style.fontFamily = `"Noto Sans CJK KR", 'NanumGothic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`;
+
         document.querySelector("#username > a").style.color = "black";
         document.querySelector("#username > a").style.textDcoration = "none";
         var imgttt = true;
@@ -154,11 +174,34 @@ function getdiv(link) {
           var num = 0;
           while (imgttt) {
             document.querySelectorAll("img")[num].style.maxWidth = "820px";
+            document.querySelectorAll("img")[num].style.height = "auto";
             num++;
           }
         } catch (e) {
           num = 0;
           imgttt = false;
+          console.log(e);
+        }
+        var vdttt = true;
+        try {
+          var vdnum = 0;
+          while (vdttt) {
+            document.querySelectorAll("video")[vdnum].innerHTML = document
+              .querySelectorAll("video")
+              [vdnum].innerHTML.replace(">", "autoplay loop >");
+            document.querySelectorAll("video")[vdnum].style.maxWidth = "820px";
+            document.querySelectorAll("video")[vdnum].style.height = "auto";
+            if (vdnum >= 1) {
+              document.getElementById(`#videojs${z}`).innerHTML ==
+                document
+                  .getElementById(`#videojs${z}`)
+                  .innerHTML.replace(">", "autoplay loop >");
+            }
+            vdnum++;
+          }
+        } catch (e) {
+          vdnum = 0;
+          vdttt = false;
           console.log(e);
         }
 
