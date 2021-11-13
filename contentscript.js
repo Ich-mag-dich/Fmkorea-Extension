@@ -1,5 +1,12 @@
-const clicktitle = document.querySelectorAll(".title.hotdeal_var8");
+var clicktitle = document.querySelectorAll(".title.hotdeal_var8");
+var clicktitle2 = document.querySelectorAll(".title");
 
+var sc = document.createElement("script");
+sc.type = "text/javascript";
+sc.src = "https://code.jquery.com/jquery-3.6.0.min.js";
+sc.integrity = "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=";
+sc.crossOrigin = "anonymous";
+document.getElementsByTagName("head")[0].appendChild(sc);
 let articlecheck = false;
 
 function onCaptured(imageUri) {
@@ -10,10 +17,48 @@ function onError(error) {
   console.log(`Error: ${error}`);
 }
 
+const setCookie = function setCookie_by_name_value_period(name, value, period) {
+  let date = new Date();
+  date.setDate(date.getDate() + period);
+  let Cookie = `${name}=${value};Expires=${date.toUTCString()}`;
+  document.cookie = Cookie;
+};
+
+var getCookie = function (url) {
+  var name = "readed_documents";
+  var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+  console.log(value[2]);
+  var url1 = `${url}`;
+  var addcookie = url1.replace("https://www.fmkorea.com/", "");
+  var nowcookie = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)")[2];
+  console.log(`${nowcookie}.${addcookie}`);
+  setCookie("readed_documents", `${nowcookie}.${addcookie}`, 7);
+  //document.querySelector(".content_dummy").reload();
+  //$(".content_dummy").load(document.URL + " .content_dummy");
+  // return value ? value[2] : null;
+};
+
 function changediv() {
   var nowpagediv = document.querySelector("#bd_capture").innerHTML;
   document.body.innerHTML = "expage";
   document.querySelector(".content_widget").append(nowpagediv);
+}
+
+function getrep(link, reppagenum2) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function () {
+    if (xmlHttp.readyState === xmlHttp.DONE) {
+      if (xmlHttp.status === 200) {
+        console.log(xmlHttp.status);
+        var qw = document.createElement("html");
+        qw.innerHTML = xmlHttp.responseText;
+        return qw.querySelector(".fdb_lst_ul").innerHTML;
+      } //document.querySelector("#getarticle")
+    }
+  }; //http://api.allorigins.win/raw?url=
+  xmlHttp.open("GET", `${link}&cpage=${reppagenum2}`);
+  xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+  xmlHttp.send(null);
 }
 
 function getdiv(link) {
@@ -39,8 +84,31 @@ function getdiv(link) {
         var looknum = document.createElement("div");
         var uploadDate = document.createElement("div");
         var repPg = document.createElement("div");
+        //fdb_itm clear comment_best  comment-2
+        //#comment_3517172969_
 
+        document.body.style.overflow = "hidden";
+        try {
+          var reppagenum = parseInt(el.querySelector(".this"));
+          var bestrep = el.querySelectorAll(".fdb_itm.clear.comment_best");
+          if (bestrep[0] != null) {
+            replDiv.append(bestrep[0]);
+            replDiv.append(bestrep[1]);
+            replDiv.append(bestrep[2]);
+            replDiv.append(bestrep[3]);
+          }
+          for (i = 1; i <= reppagenum; i++) {
+            this.timeout(1000);
+            console.log(getrep(link, i));
+            replDiv.append(getrep(link, i));
+          }
+        } catch (e) {
+          console.log("몬가몬가 잘못된2");
+          console.log(e);
+        }
+        //fetch(`${link}?cpage=7`)
         // #cmtPosition > div.fdb_tag.bg_f_f9.css3pie > div
+
         try {
           repPg.innerHTML = el.querySelector(
             "#cmtPosition > div.fdb_tag.bg_f_f9.css3pie > div"
@@ -48,20 +116,32 @@ function getdiv(link) {
         } catch (e) {
           console.log(e);
         }
-        looknum.innerHTML = `${
-          el.querySelector(".side.fr > span:nth-child(1)").innerHTML
-        }`;
+        try {
+          looknum.innerHTML = `${
+            el.querySelector(".side.fr > span:nth-child(1)").innerHTML
+          }`;
+        } catch (e) {
+          console.log(e);
+        }
         looknum.style.textAlign = "right";
-        uploadDate.innerHTML = `${el.querySelector(".date.m_no").innerHTML}`;
+        try {
+          uploadDate.innerHTML = `${el.querySelector(".date.m_no").innerHTML}`;
+        } catch (e) {
+          console.log(e);
+        }
         uploadDate.style.textAlign = "right";
         //choo.append(el.querySelector(".vote_label"));
         username.innerHTML = `<br>${el.querySelector(".side").innerHTML}`;
         username.id = "username";
         looknum.style.marginRight = "40px";
         uploadDate.style.marginRight = "40px";
-        choobanresult.innerHTML = `추천수: ${
-          el.querySelector(".btn_img.new_voted_count").innerText
-        } <br><br><br><br>`;
+        try {
+          choobanresult.innerHTML = `추천수: ${
+            el.querySelector(".btn_img.new_voted_count").innerText
+          } <br><br><br><br>`;
+        } catch (e) {
+          console.log(e);
+        }
         choobanresult.style.fontFamily = `"Noto Sans CJK KR", sans-serif`;
         choobanresult.style.fontSize = "24px";
         choobanresult.style.fontWeight = "bold";
@@ -71,10 +151,13 @@ function getdiv(link) {
             "#bd_capture > div.rd_hd.clear > div.board.clear > div.top_area.ngeb > h1 > span"
           ).innerText
         }`;
+        var 댓글 = document.createElement("div");
+
         try {
-          replDiv.innerHTML = `<br><br>${
+          댓글.innerHTML = `<br><br>${
             el.querySelector("#cmtPosition > ul").innerHTML
           }<br><br>`;
+          replDiv.append(댓글);
         } catch {
           replDiv.innerHTML = "<br><br>댓글이 없어용 ;ㅅ;";
           replDiv.style.textAlign = "center";
@@ -104,7 +187,7 @@ function getdiv(link) {
         replFrame.appendChild(replDiv);
         frame.appendChild(articleFrame);
         frame.appendChild(replFrame);
-
+        frame.style.overflow = "scroll";
         //#bd_capture > div.rd_body.clear > article > div
         atcTitle.style.textAlign = "left";
         atcTitle.style.marginTop = "25px";
@@ -151,15 +234,15 @@ function getdiv(link) {
         replDiv.style.zIndex = "103";
 
         frame.style.width = "900px";
-        frame.style.top = `${winY + 50}px`;
+        frame.style.top = `${winY - 80}px`;
         frame.style.position = "absolute";
         frame.style.marginLeft = "21%";
         frame.style.marginRight = "auto";
         replFrame.style.marginBottom = "200px";
         frame.id = "getarticle";
         frame.style.zIndex = "101";
-        frame.style.boxShadow = "rgba(109, 109, 109, 0.5) 0 0 0 9999px";
-        frame.style.backgroundColor = "rgba(109, 109, 109, 0.5)";
+
+        //frame.style.backgroundColor = "rgba(109, 109, 109, 0.5)";
 
         document.querySelector("#header").append(frame);
         articlecheck = true;
@@ -168,7 +251,7 @@ function getdiv(link) {
         ).style.fontFamily = `"Noto Sans CJK KR", 'NanumGothic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`;
 
         document.querySelector("#username > a").style.color = "black";
-        document.querySelector("#username > a").style.textDcoration = "none";
+        document.querySelector("#username > a").style.textDecoration = "none";
         var imgttt = true;
         try {
           var num = 0;
@@ -204,7 +287,12 @@ function getdiv(link) {
           vdttt = false;
           console.log(e);
         }
-
+        if (document.querySelector("#scrollst") == null) {
+          var style1 = document.createElement("style");
+          style1.id = "scrollst";
+          style1.innerHTML = `#getarticle::-webkit-scrollbar {display: none;}`;
+          document.head.appendChild(style1);
+        }
         try {
           var hhh = document.querySelector(".rd_body.clear").offsetHeight;
         } catch (e) {
@@ -214,7 +302,8 @@ function getdiv(link) {
         console.log("asdasdasd", hhh);
         var strhhh = "" + hhh;
         hhh = strhhh.toString().replace("px", "");
-        articleFrame.style.height = `${500 + Number(hhh)}px`;
+        //articleFrame.style.height = `${500 + Number(hhh)}px`;
+        frame.style.height = `1200px`;
         var imgtag = document.querySelectorAll("#articlediv");
         try {
           document.getElementById("bvideojs_muted1").innerHTML = document
@@ -300,6 +389,39 @@ function getdiv(link) {
             tttt = false;
             console.log(e);
           }
+          if (
+            document
+              .querySelector(
+                "#header > div > div.logged_info > span:nth-child(7) > a"
+              )
+              .innerText.includes("다크ON")
+          ) {
+            replFrame.style.backgroundColor = "rgba( 50, 50, 50, 0.95 )";
+            articleFrame.style.backgroundColor = "rgba( 50, 50, 50, 0.95 )";
+            frame.style.boxShadow = "";
+            document.querySelector("#username > a").style.color = "white";
+            document.querySelector("#username > a").style.textDecoration =
+              "none";
+          } else if (
+            document
+              .querySelector(
+                "#header > div > div.logged_info > span:nth-child(4) > a"
+              )
+              .innerText.includes("다크ON")
+          ) {
+            // #username > a
+            frame.style.boxShadow = "";
+            replFrame.style.backgroundColor = "rgba( 50, 50, 50, 0.95 )";
+            articleFrame.style.backgroundColor = "rgba( 50, 50, 50, 0.95 )";
+            document.querySelector("#username > a").style.color = "white";
+            document.querySelector("#username > a").style.textDecoration =
+              "none";
+          } else {
+            frame.style.boxShadow = "rgba(109, 109, 109, 0.5) 0 0 0 9999px";
+            frame.style.backgroundColor = "rgba(109, 109, 109, 0.5)";
+            document.querySelector("#username > a").style.textDecoration =
+              "none";
+          }
         }
       } //document.querySelector("#getarticle")
     }
@@ -313,6 +435,9 @@ document.addEventListener("click", function (e) {
   if (articlecheck == true) {
     if (e.target.id == "container") {
       document.querySelector("#getarticle").remove();
+      document.body.style.overflow = "scroll";
+      clicktitle = document.querySelectorAll(".title.hotdeal_var8");
+      clicktitle2 = document.querySelectorAll(".title");
       articlecheck = false;
     } else if (e.target == "html") {
       console.log("html");
@@ -342,10 +467,48 @@ for (const title1 of clicktitle) {
     "contextmenu",
     function (e) {
       e.preventDefault();
+      if (document.querySelector("#getarticle") == null) {
+        getdiv(title1.querySelector("a").href);
+        console.log(title1.querySelector("a").href);
+        getCookie(title1.querySelector("a").href);
+      }
       //var expage = document.body.innerHTML;
       //location.replace(title1.querySelector("a").href);
       //window.open(title1.querySelector("a").href);
-      getdiv(title1.querySelector("a").href);
+
+      //window.open(title1.querySelector("a").href, "_blank");
+      //alert(title1.querySelector("a").href);
+      // Do what you want with click event
+    },
+    false
+  );
+}
+
+for (const title2 of clicktitle2) {
+  title2.addEventListener(
+    "contextmenu",
+    function (e) {
+      e.preventDefault();
+      if (document.querySelector("#getarticle") == null) {
+        if (title2.parentElement.className === "notice notice_pop0") {
+          console.log(title2.parentElement.className);
+          console.log(title2.querySelector("a").href);
+          getdiv(title2.querySelector("a").href);
+        } else if (title2.parentElement.className === "li") {
+          console.log(title2.parentElement.className);
+          getdiv(title2.querySelector("a").href);
+          console.log(title2.querySelector("a").href);
+        }
+        // else {
+        //   getdiv(title2.href);
+        //   getCookie(title2.href);
+        //   console.log(title2.href);
+        // }
+        console.log(title2.href);
+      }
+      //var expage = document.body.innerHTML;
+      //location.replace(title1.querySelector("a").href);
+      //window.open(title1.querySelector("a").href);
 
       //window.open(title1.querySelector("a").href, "_blank");
       //alert(title1.querySelector("a").href);
@@ -372,7 +535,25 @@ window.onkeydown = event => {
   if (event.keyCode == 27) {
     if (articlecheck == true) {
       document.querySelector("#getarticle").remove();
+      document.body.style.overflow = "scroll";
+      clicktitle = document.querySelectorAll(".title.hotdeal_var8");
+      clicktitle2 = document.querySelectorAll(".title");
       articlecheck = false;
     }
   }
 };
+
+document.querySelector("#container").addEventListener("wheel", function (e) {
+  if (document.querySelector("#getarticle") != null) {
+    if (e.wheelDelta === -120) {
+      //console.log("wheel down");
+      document.querySelector("#getarticle").scrollTop += 150;
+    } else {
+      //console.log("wheel up");
+      document.querySelector("#getarticle").scrollTop -= 150;
+    }
+  }
+
+  //var currentScrollValue = document.querySelector("#getarticle").scrollTop;
+  //console.log("currentScrollValue is " + currentScrollValue);
+});
