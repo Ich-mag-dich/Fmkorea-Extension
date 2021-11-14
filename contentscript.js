@@ -32,11 +32,28 @@ var getCookie = function (url) {
   var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
   console.log(value[2]);
   var url1 = `${url}`;
-  var addcookie = url1.replace("https://www.fmkorea.com/", "");
+  if (url1.includes("listStyle")) {
+    // https://www.fmkorea.com/index.php?mid=maple&sort_index=pop&order_type=desc&document_srl=4077148422&listStyle=webzine
+    var addcookie = url1.replace(
+      "https://www.fmkorea.com/index.php?mid=maple&sort_index=pop&order_type=desc&document_srl=",
+      ""
+    ); // https://www.fmkorea.com/index.php?mid=best2&sort_index=pop&order_type=desc&document_srl
+    addcookie = addcookie.replace("&listStyle=webzine", "");
+    console.log(url1);
+  } else if (url1.includes("/best/")) {
+    var addcookie = url1.replace("https://www.fmkorea.com/best/", "");
+  } else if (url1.includes("mid=best2")) {
+    var addcookie = url1.replace(
+      "https://www.fmkorea.com/index.php?mid=best2&sort_index=pop&order_type=desc&document_srl=",
+      ""
+    );
+  } else {
+    var addcookie = url1.replace("https://www.fmkorea.com/", "");
+  }
   var nowcookie = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)")[2];
-  console.log(`${nowcookie}`);
+  console.log(`nowcookie ${nowcookie}`);
   if (!value[2].includes(`${addcookie}`)) {
-    setCookie("readed_documents", `${nowcookie}.${addcookie}`, 7);
+    setCookie("readed_documents", `${nowcookie}.${addcookie}`, 30);
   } else {
     console.log("이미 본,,");
   }
@@ -232,7 +249,7 @@ function getdiv(link) {
         replFrame.style.width = "900px";
         replFrame.style.maxWidth = "900px";
         replFrame.style.backgroundColor = "rgba( 255, 255, 255, 0.9 )";
-        replFrame.style.minHeight = "300px";
+        replFrame.style.minHeight = "150px";
         replFrame.style.zIndex = "102";
         replFrame.style.marginTop = "20px";
         replFrame.style.borderRadius = "10px";
@@ -499,17 +516,18 @@ for (const title2 of clicktitle2) {
         if (title2.parentElement.className === "notice notice_pop0") {
           console.log(title2.parentElement.className);
           console.log(title2.querySelector("a").href);
+          getCookie(title2.querySelector("a").href);
           getdiv(title2.querySelector("a").href);
         } else if (title2.parentElement.className === "li") {
           console.log(title2.parentElement.className);
           getdiv(title2.querySelector("a").href);
+          getCookie(title2.querySelector("a").href);
           console.log(title2.querySelector("a").href);
+        } else {
+          getdiv(title2.href);
+          getCookie(title2.href);
+          console.log(title2.href);
         }
-        // else {
-        //   getdiv(title2.href);
-        //   getCookie(title2.href);
-        //   console.log(title2.href);
-        // }
         console.log(title2.href);
       }
       //var expage = document.body.innerHTML;
