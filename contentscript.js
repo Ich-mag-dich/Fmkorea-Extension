@@ -1,12 +1,6 @@
 var clicktitle = document.querySelectorAll(".title.hotdeal_var8");
 var clicktitle2 = document.querySelectorAll(".title");
 
-var sc = document.createElement("script");
-sc.type = "text/javascript";
-sc.src = "https://code.jquery.com/jquery-3.6.0.min.js";
-sc.integrity = "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=";
-sc.crossOrigin = "anonymous";
-document.getElementsByTagName("head")[0].appendChild(sc);
 let articlecheck = false;
 
 function onCaptured(imageUri) {
@@ -77,11 +71,15 @@ function getrep(link, reppagenum2) {
         console.log(xmlHttp.status);
         var qw = document.createElement("html");
         qw.innerHTML = xmlHttp.responseText;
-        return qw.querySelector(".fdb_lst_ul").innerHTML;
+        console.log(`${link}?cpage=${reppagenum2}`);
+        console.log("asd", qw.querySelector("#cmtPosition > ul"));
+        var retrep = qw.querySelector("#cmtPosition > ul").innerHTML;
+        return retrep;
       } //document.querySelector("#getarticle")
-    }
+    } // document.querySelector("#cmtPosition > ul")
   }; //http://api.allorigins.win/raw?url=
-  xmlHttp.open("GET", `${link}&cpage=${reppagenum2}`);
+  //xmlHttp.open("GET", `${link}&cpage=${reppagenum2}`);
+  xmlHttp.open("GET", `${link}?&cpage=${reppagenum2}`);
   xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
   xmlHttp.send(null);
 }
@@ -118,15 +116,22 @@ function getdiv(link) {
           var bestrep = el.querySelectorAll(".fdb_itm.clear.comment_best");
           if (bestrep[0] != null) {
             replDiv.append(bestrep[0]);
+          }
+          if (bestrep[1] != null) {
             replDiv.append(bestrep[1]);
+          }
+          if (bestrep[2] != null) {
             replDiv.append(bestrep[2]);
+          }
+          if (bestrep[3] != null) {
             replDiv.append(bestrep[3]);
           }
-          for (i = 1; i <= reppagenum; i++) {
-            this.timeout(1000);
-            console.log(getrep(link, i));
-            replDiv.append(getrep(link, i));
-          }
+
+          // for (i = 1; i <= reppagenum; i++) {
+          //   console.log(getrep(link, i));
+          //   replDiv.append(getrep(link, i));
+          // }
+          //replDiv.append(getrep(link, 1)); 아이 싯팔 왜 오류나
         } catch (e) {
           console.log("몬가몬가 잘못된2");
           console.log(e);
@@ -447,6 +452,7 @@ function getdiv(link) {
             document.querySelector("#username > a").style.textDecoration =
               "none";
           }
+          document.querySelector("#addjquery").remove();
         }
       } //document.querySelector("#getarticle")
     }
@@ -490,6 +496,13 @@ for (const title12 of clicktitle) {
     "contextmenu",
     function () {
       if (document.querySelector("#getarticle") == null) {
+        var sc = document.createElement("script");
+        sc.id = "addjquery";
+        sc.type = "text/javascript";
+        sc.src = "https://code.jquery.com/jquery-3.6.0.min.js";
+        sc.integrity = "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=";
+        sc.crossOrigin = "anonymous";
+        document.getElementsByTagName("head")[0].appendChild(sc);
         getdiv(title12.querySelector("a").href);
         console.log(title12.querySelector("a").href);
         getCookie(title12.querySelector("a").href);
@@ -560,7 +573,6 @@ window.onkeydown = event => {
     if (articlecheck == true) {
       document.querySelector("#getarticle").remove();
       document.body.style.overflow = "scroll";
-      location.reload();
 
       articlecheck = false;
     }
