@@ -4,11 +4,11 @@ var clicktitle2 = document.querySelectorAll(".title");
 let articlecheck = false;
 
 function onCaptured(imageUri) {
-  console.log(imageUri);
+  //console.log(imageUri);
 }
 
 function onError(error) {
-  console.log(`Error: ${error}`);
+  //console.log(`Error: ${error}`);
 }
 
 const setCookie = function setCookie_by_name_value_period(name, value, period) {
@@ -17,14 +17,14 @@ const setCookie = function setCookie_by_name_value_period(name, value, period) {
   let Cookie = `${name}=${value};Expires=${date.toUTCString()}`;
   document.cookie = Cookie;
   //document.getElementsByClassName("content_dummy").reload();
-  console.log("추가");
+  //console.log("추가");
   //$(".content_dummy").load(location.href + " .content_dummy");
 };
 
 var getCookie = function (url) {
   var name = "readed_documents";
   var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
-  console.log(value[2]);
+  ////console.log(value[2]);
   var url1 = `${url}`;
   if (url1.includes("listStyle")) {
     // https://www.fmkorea.com/index.php?mid=maple&sort_index=pop&order_type=desc&document_srl=4077148422&listStyle=webzine
@@ -33,7 +33,7 @@ var getCookie = function (url) {
       ""
     ); // https://www.fmkorea.com/index.php?mid=best2&sort_index=pop&order_type=desc&document_srl
     addcookie = addcookie.replace("&listStyle=webzine", "");
-    console.log(url1);
+    ////console.log(url1);
   } else if (url1.includes("/best/")) {
     var addcookie = url1.replace("https://www.fmkorea.com/best/", "");
   } else if (url1.includes("mid=best2")) {
@@ -45,11 +45,11 @@ var getCookie = function (url) {
     var addcookie = url1.replace("https://www.fmkorea.com/", "");
   }
   var nowcookie = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)")[2];
-  console.log(`nowcookie ${nowcookie}`);
+  //console.log(`nowcookie ${nowcookie}`);
   if (!value[2].includes(`${addcookie}`)) {
     setCookie("readed_documents", `${nowcookie}.${addcookie}`, 30);
   } else {
-    console.log("이미 본,,");
+    //console.log("이미 본,,");
   }
 
   //document.querySelector(".content_dummy").reload();
@@ -68,11 +68,11 @@ function getrep(link, reppagenum2) {
   xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState === xmlHttp.DONE) {
       if (xmlHttp.status === 200) {
-        console.log(xmlHttp.status);
+        //console.log(xmlHttp.status);
         var qw = document.createElement("html");
         qw.innerHTML = xmlHttp.responseText;
-        console.log(`${link}?cpage=${reppagenum2}`);
-        console.log("asd", qw.querySelector("#cmtPosition > ul"));
+        //console.log(`${link}?cpage=${reppagenum2}`);
+        //console.log("asd", qw.querySelector("#cmtPosition > ul"));
         var retrep = qw.querySelector("#cmtPosition > ul").innerHTML;
         return retrep;
       } //document.querySelector("#getarticle")
@@ -89,7 +89,7 @@ function getdiv(link) {
   xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState === xmlHttp.DONE) {
       if (xmlHttp.status === 200) {
-        console.log(xmlHttp.status);
+        //console.log(xmlHttp.status);
         var el = document.createElement("html");
         var winY = window.pageYOffset;
         el.innerHTML = xmlHttp.responseText;
@@ -109,12 +109,15 @@ function getdiv(link) {
         var repPg = document.createElement("div");
         //fdb_itm clear comment_best  comment-2
         //#comment_3517172969_
-
+        //console.log(el.innerHTML);
         document.body.style.overflow = "hidden";
         try {
           var reppagenum = parseInt(el.querySelector(".this"));
           var bestrep = el.querySelectorAll(".fdb_itm.clear.comment_best");
           if (bestrep[0] != null) {
+            var repbr = document.createElement("div");
+            repbr.innerHTML = "<br><br><br>";
+            replDiv.append(repbr);
             replDiv.append(bestrep[0]);
           }
           if (bestrep[1] != null) {
@@ -128,13 +131,12 @@ function getdiv(link) {
           }
 
           // for (i = 1; i <= reppagenum; i++) {
-          //   console.log(getrep(link, i));
+          //   //console.log(getrep(link, i));
           //   replDiv.append(getrep(link, i));
           // }
           //replDiv.append(getrep(link, 1)); 아이 싯팔 왜 오류나
         } catch (e) {
-          console.log("몬가몬가 잘못된2");
-          console.log(e);
+          //console.log("몬가몬가 잘못된2");
         }
         //fetch(`${link}?cpage=7`)
         // #cmtPosition > div.fdb_tag.bg_f_f9.css3pie > div
@@ -143,25 +145,21 @@ function getdiv(link) {
           repPg.innerHTML = el.querySelector(
             "#cmtPosition > div.fdb_tag.bg_f_f9.css3pie > div"
           ).innerHTML;
-        } catch (e) {
-          console.log(e);
-        }
+        } catch (e) {}
         try {
           looknum.innerHTML = `${
             el.querySelector(".side.fr > span:nth-child(1)").innerHTML
           }`;
-        } catch (e) {
-          console.log(e);
-        }
+        } catch (e) {}
         looknum.style.textAlign = "right";
         try {
           uploadDate.innerHTML = `${el.querySelector(".date.m_no").innerHTML}`;
-        } catch (e) {
-          console.log(e);
-        }
+        } catch (e) {}
         uploadDate.style.textAlign = "right";
         //choo.append(el.querySelector(".vote_label"));
-        username.innerHTML = `<br>${el.querySelector(".side").innerHTML}`;
+        try {
+          username.innerHTML = `<br>${el.querySelector(".side").innerHTML}`;
+        } catch {}
         username.id = "username";
         looknum.style.marginRight = "40px";
         uploadDate.style.marginRight = "40px";
@@ -169,18 +167,19 @@ function getdiv(link) {
           choobanresult.innerHTML = `추천수: ${
             el.querySelector(".btn_img.new_voted_count").innerText
           } <br><br><br><br>`;
-        } catch (e) {
-          console.log(e);
-        }
+        } catch (e) {}
         choobanresult.style.fontFamily = `"Noto Sans CJK KR", sans-serif`;
         choobanresult.style.fontSize = "24px";
         choobanresult.style.fontWeight = "bold";
         //ban.append(el.querySelector(".vote3"));
-        atcTitle.innerHTML = `<br><br>${
-          el.querySelector(
-            "#bd_capture > div.rd_hd.clear > div.board.clear > div.top_area.ngeb > h1 > span"
-          ).innerText
-        }`;
+        try {
+          atcTitle.innerHTML = `<br><br>${
+            el.querySelector(
+              "#bd_capture > div.rd_hd.clear > div.board.clear > div.top_area.ngeb > h1 > span"
+            ).innerText
+          }`;
+        } catch {}
+
         var 댓글 = document.createElement("div");
 
         try {
@@ -293,7 +292,6 @@ function getdiv(link) {
         } catch (e) {
           num = 0;
           imgttt = false;
-          console.log(e);
         }
         var vdttt = true;
         try {
@@ -315,7 +313,6 @@ function getdiv(link) {
         } catch (e) {
           vdnum = 0;
           vdttt = false;
-          console.log(e);
         }
         if (document.querySelector("#scrollst") == null) {
           var style1 = document.createElement("style");
@@ -329,7 +326,7 @@ function getdiv(link) {
           var hhh =
             document.getElementsByClassName("rd_body.clear").offsetHeight;
         } // .use_new_voted_count > span
-        console.log("asdasdasd", hhh);
+        //console.log("asdasdasd", hhh);
         var strhhh = "" + hhh;
         hhh = strhhh.toString().replace("px", "");
         //articleFrame.style.height = `${500 + Number(hhh)}px`;
@@ -340,22 +337,19 @@ function getdiv(link) {
             .getElementById("bvideojs_muted1")
             .innerHTML.replace(">", "autoplay >");
           document.getElementById("bvideojs_muted1").id = "videojs1";
-        } catch (e) {
-          console.log(e);
-        }
-        console.log(1 + imgtag);
+        } catch (e) {}
+        //console.log(1 + imgtag);
         for (i in imgtag) {
           try {
             var imgtag1 = imgtag[i].querySelector("img");
             imgtag1.style.maxWidth = "820px";
           } catch (e) {
-            console.log(e);
             //
           }
 
           // if (imgtag[i].offsetWidth != null) {
           //   width = imgtag[i].offsetWidth;
-          //   console.log(width);
+          //   //console.log(width);
           //   if (width >= 860) {
           //     imgtag[i].style.width = "840px";
           //   }
@@ -367,9 +361,7 @@ function getdiv(link) {
             try {
               let vdw = document.getElementById(`#videojs${z}`);
               vdw.style.width = "820px";
-            } catch (e) {
-              console.log(e);
-            }
+            } catch (e) {}
           }
           // autoplay
           try {
@@ -390,34 +382,29 @@ function getdiv(link) {
               //     let vdw = document.getElementById(`#videojs${z}`);
               //     vdw.style.width = "820px";
               //   } catch (e) {
-              //     console.log(e);
+              //
               //   }
               // }
               imgtag1.parentElement.innerHTML = `${vd}`;
               imgtag1.innerHTML = vd1;
-              console.log("123123", imgtag1.parentElement.innerHTML);
+              //console.log("123123", imgtag1.parentElement.innerHTML);
               imgtag1.parentElement.style.maxWidth = "820px";
               document.querySelector(".vjs-sound.video-js").style.width =
                 "auto";
             }
             imgtag1.parentElement.style.maxWidth = "820px";
-          } catch (e) {
-            console.log(e);
-          }
+          } catch (e) {}
           try {
             var aTag = document.getElementsByClassName("re_comment");
-          } catch (e) {
-            console.log(e);
-          }
+          } catch (e) {}
           var tttt = true;
           try {
             while (tttt) {
               document.querySelector(".fdb_nav.img_tx > a").remove();
-              console.log("지우기", i);
+              //console.log("지우기", i);
             }
           } catch (e) {
             tttt = false;
-            console.log(e);
           }
           if (
             document
@@ -452,8 +439,64 @@ function getdiv(link) {
             document.querySelector("#username > a").style.textDecoration =
               "none";
           }
-          document.querySelector("#addjquery").remove();
         }
+        var imgtag = $("p").find("img");
+        var imgtt = $("#articlediv").find("img");
+        let imgs1 = $(`#articlediv`).find(`img`);
+        var imgtaglen = imgtag.length;
+        var imgttlen = imgtt.length;
+        //#articlediv > img:nth-child(7)
+        //#articlediv > img:nth-child(10)
+        //#articlediv > img:nth-child(1)
+        //#articlediv > img:nth-child(10)
+        for (i = 0; i < imgtaglen; i++) {
+          if (`${imgtag[i].src}`.includes("transparent.gif")) {
+            //console.log(imgtag[i].dataset.dataOriginal);
+            var iti = imgtag[i].parentElement.innerHTML;
+            var iti1 = iti.split('data-original="');
+            var iti2 = iti1[1].split('" alt="');
+            imgtag[i].src = iti2[0];
+          }
+          //console.log(imgtag[i].src);
+        }
+        for (i = 0; i < imgttlen; i++) {
+          if (`${imgs1[i].src}`.includes("transparent.gif")) {
+            let iti3 = imgs1[i].outerHTML;
+            let iti4 = iti3.split('data-original="');
+            let iti5 = iti4[1].split('" alt="');
+            let iti6 = iti5[0].split('" src="');
+            console.log(iti6[0]);
+            imgs1[i].src = iti6[0];
+          }
+          //console.log(imgs1[i]);
+        }
+
+        //video
+        var videos = $("video");
+        for (i = 0; i < videos.length; i++) {
+          var videohtml = document.createElement("video");
+          var videosrc = document.createElement("source");
+          var getvideohtml = `${videos[i].outerHTML}`;
+          videohtml.style.maxWidth = "820px";
+          videohtml.style.height = "auto";
+          let vdsp = getvideohtml.split('src="');
+          let vdsp1 = vdsp[1].split('" type=');
+          let vdsp2 = vdsp1[0];
+          videosrc.src = vdsp2;
+          videosrc.type = "video/mp4";
+          videohtml.loop = true;
+          videohtml.controls = true;
+          if (`${vdsp2}`.includes("gif")) {
+            videohtml.autoplay = true;
+          } else {
+            videohtml.autoplay = false;
+          }
+          videohtml.appendChild(videosrc);
+          videos[i].id = "delete";
+          videos[i].parentElement.append(videohtml);
+          $("#delete").remove();
+        }
+        $("#addjquery").remove();
       } //document.querySelector("#getarticle")
     }
   }; //http://api.allorigins.win/raw?url=
@@ -469,7 +512,7 @@ document.addEventListener("click", function (e) {
       document.body.style.overflow = "scroll";
       articlecheck = false;
     } else if (e.target == "html") {
-      console.log("html");
+      //console.log("html");
     }
     //alert(e.target.id, e.target.className);
     // if (
@@ -504,7 +547,7 @@ for (const title12 of clicktitle) {
         sc.crossOrigin = "anonymous";
         document.getElementsByTagName("head")[0].appendChild(sc);
         getdiv(title12.querySelector("a").href);
-        console.log(title12.querySelector("a").href);
+        //console.log(title12.querySelector("a").href);
         getCookie(title12.querySelector("a").href);
         title12.querySelector("a").className = "visited";
       }
@@ -527,21 +570,21 @@ for (const title2 of clicktitle2) {
       e.preventDefault();
       if (document.querySelector("#getarticle") == null) {
         if (title2.parentElement.className === "notice notice_pop0") {
-          console.log(title2.parentElement.className);
-          console.log(title2.querySelector("a").href);
+          //console.log(title2.parentElement.className);
+          //console.log(title2.querySelector("a").href);
           getCookie(title2.querySelector("a").href);
           getdiv(title2.querySelector("a").href);
         } else if (title2.parentElement.className === "li") {
-          console.log(title2.parentElement.className);
+          //console.log(title2.parentElement.className);
           getdiv(title2.querySelector("a").href);
           getCookie(title2.querySelector("a").href);
-          console.log(title2.querySelector("a").href);
+          //console.log(title2.querySelector("a").href);
         } else {
           getdiv(title2.href);
           getCookie(title2.href);
-          console.log(title2.href);
+          //console.log(title2.href);
         }
-        console.log(title2.href);
+        //console.log(title2.href);
       }
       //var expage = document.body.innerHTML;
       //location.replace(title12.querySelector("a").href);
@@ -582,14 +625,14 @@ window.onkeydown = event => {
 document.querySelector("#container").addEventListener("wheel", function (e) {
   if (document.querySelector("#getarticle") != null) {
     if (e.wheelDelta === -120) {
-      //console.log("wheel down");
+      ////console.log("wheel down");
       document.querySelector("#getarticle").scrollTop += 150;
     } else {
-      //console.log("wheel up");
+      ////console.log("wheel up");
       document.querySelector("#getarticle").scrollTop -= 150;
     }
   }
 
   //var currentScrollValue = document.querySelector("#getarticle").scrollTop;
-  //console.log("currentScrollValue is " + currentScrollValue);
+  ////console.log("currentScrollValue is " + currentScrollValue);
 });

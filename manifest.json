@@ -8,24 +8,26 @@
         "background.js"
         ]
     },
-    "permissions": ["storage",
+    "permissions": [
+      "https://fmkorea.com/*",
+      "storage",
       "activeTab",
-      "tabs",
-      "notifications",
-      "<all_urls>",
-      "tabCapture"
+      "webRequest",
+      "webRequestBlocking",
+      "contextMenus"
     ],
+    
     "browser_action": {
         "default_icon": "./src/img/icon.png",
         "default_popup": "./popup.html"
       },
     "options_page": "options.html",
     "externally_connectable": {
-    "matches": ["https://*.google.com/*","https://*.fmkorea.com/*"]
+    "matches": ["https://*.fmkorea.com/*"]
     },
     "content_scripts": [
       {
-       "matches": ["https://*.google.com/*","https://*.fmkorea.com/*"],
+       "matches": ["https://*.fmkorea.com/*"],
        "js": ["thirdParty/jquery-3.6.0.min.js", "contentscript.js"]
       }
   ],
