@@ -1,3 +1,5 @@
+//testing
+
 var clicktitle = document.querySelectorAll(".title.hotdeal_var8");
 var clicktitle2 = document.querySelectorAll(".title");
 
