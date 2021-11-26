@@ -671,7 +671,7 @@ document.querySelector("#container").addEventListener("wheel", function (e) {
       document.querySelector("#getarticle").scrollTop += 200;
     } else {
       ////console.log("wheel up");
-      document.querySelector("#getarticle").scrollTop -= 0;
+      document.querySelector("#getarticle").scrollTop -= 200;
     }
   }
 
