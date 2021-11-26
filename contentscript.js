@@ -1,6 +1,3 @@
-//testing
-//test num 2
-
 var clicktitle = document.querySelectorAll(".title.hotdeal_var8");
 var clicktitle2 = document.querySelectorAll(".title");
 
@@ -110,6 +107,37 @@ function getdiv(link) {
         var looknum = document.createElement("div");
         var uploadDate = document.createElement("div");
         var repPg = document.createElement("div");
+        var votediv = document.createElement("div");
+        var voteup = document.createElement("div");
+        var votedown = document.createElement("div");
+        var brbr = document.createElement("div");
+
+        brbr.innerHTML = "<br><br><br>";
+        let readNum = `${link}`.replace("https://www.fmkorea.com/", "");
+
+        votediv.style.textAlign = "center";
+        voteup.innerText = "추천";
+        voteup.style.display = "inline";
+        voteup.style.cursor = "pointer";
+        //voteup.innerHTML = `<a id="voteup" style="cursor: pointer;" onclick="fm_vote(${readNum});">추천</a>`;
+        voteup.addEventListener("click", function () {
+          $.exec_json(
+            "document.procDocumentVoteUp",
+            { target_srl: readNum },
+            function (p) {
+              callback(p);
+            }
+          );
+          return false;
+        });
+        votedown.style.display = "inline";
+        votedown.style.cursor = "pointer";
+        votedown.innerHTML = `<a id="votedown" style="cursor: pointer;" onclick="fm_vote3(${readNum});">비추천</a>`;
+        votedown.style.marginLeft = "30px";
+        // try {
+        //   votedown.innerHTML = el.querySelector(".vote3").innerHTML;
+        // } catch (e) {}
+
         //fdb_itm clear comment_best  comment-2
         //#comment_3517172969_
         //console.log(el.innerHTML);
@@ -205,6 +233,10 @@ function getdiv(link) {
         //ban.style.display = "inline-block";
         username.style.marginLeft = "40px";
         //chooban.append("<br><br><br>");
+        votediv.append(voteup);
+        votediv.append(votedown);
+        votediv.append(brbr);
+
         chooban.append(choo);
         chooban.append(choobanresult);
         chooban.append(ban);
@@ -215,6 +247,7 @@ function getdiv(link) {
         articleFrame.appendChild(looknum);
         articleFrame.appendChild(articleDiv);
         articleFrame.appendChild(chooban);
+        articleFrame.appendChild(votediv);
         replFrame.appendChild(repPg);
         replFrame.appendChild(replDiv);
         frame.appendChild(articleFrame);
@@ -542,17 +575,20 @@ for (const title12 of clicktitle) {
     "contextmenu",
     function () {
       if (document.querySelector("#getarticle") == null) {
-        var sc = document.createElement("script");
-        sc.id = "addjquery";
-        sc.type = "text/javascript";
-        sc.src = "https://code.jquery.com/jquery-3.6.0.min.js";
-        sc.integrity = "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=";
-        sc.crossOrigin = "anonymous";
-        document.getElementsByTagName("head")[0].appendChild(sc);
-        getdiv(title12.querySelector("a").href);
-        //console.log(title12.querySelector("a").href);
-        getCookie(title12.querySelector("a").href);
-        title12.querySelector("a").className = "visited";
+        if (articlecheck == false) {
+          articlecheck = true;
+          var sc = document.createElement("script");
+          sc.id = "addjquery";
+          sc.type = "text/javascript";
+          sc.src = "https://code.jquery.com/jquery-3.6.0.min.js";
+          sc.integrity = "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=";
+          sc.crossOrigin = "anonymous";
+          document.getElementsByTagName("head")[0].appendChild(sc);
+          getdiv(title12.querySelector("a").href);
+          //console.log(title12.querySelector("a").href);
+          getCookie(title12.querySelector("a").href);
+          title12.querySelector("a").className = "visited";
+        }
       }
       //var expage = document.body.innerHTML;
       //location.replace(title12.querySelector("a").href);
@@ -572,22 +608,25 @@ for (const title2 of clicktitle2) {
     function (e) {
       e.preventDefault();
       if (document.querySelector("#getarticle") == null) {
-        if (title2.parentElement.className === "notice notice_pop0") {
-          //console.log(title2.parentElement.className);
-          //console.log(title2.querySelector("a").href);
-          getCookie(title2.querySelector("a").href);
-          getdiv(title2.querySelector("a").href);
-        } else if (title2.parentElement.className === "li") {
-          //console.log(title2.parentElement.className);
-          getdiv(title2.querySelector("a").href);
-          getCookie(title2.querySelector("a").href);
-          //console.log(title2.querySelector("a").href);
-        } else {
-          getdiv(title2.href);
-          getCookie(title2.href);
+        if (articlecheck == false) {
+          articlecheck = true;
+          if (title2.parentElement.className === "notice notice_pop0") {
+            //console.log(title2.parentElement.className);
+            //console.log(title2.querySelector("a").href);
+            getCookie(title2.querySelector("a").href);
+            getdiv(title2.querySelector("a").href);
+          } else if (title2.parentElement.className === "li") {
+            //console.log(title2.parentElement.className);
+            getdiv(title2.querySelector("a").href);
+            getCookie(title2.querySelector("a").href);
+            //console.log(title2.querySelector("a").href);
+          } else {
+            getdiv(title2.href);
+            getCookie(title2.href);
+            //console.log(title2.href);
+          }
           //console.log(title2.href);
         }
-        //console.log(title2.href);
       }
       //var expage = document.body.innerHTML;
       //location.replace(title12.querySelector("a").href);
@@ -629,10 +668,10 @@ document.querySelector("#container").addEventListener("wheel", function (e) {
   if (document.querySelector("#getarticle") != null) {
     if (e.wheelDelta === -120) {
       ////console.log("wheel down");
-      document.querySelector("#getarticle").scrollTop += 150;
+      document.querySelector("#getarticle").scrollTop += 200;
     } else {
       ////console.log("wheel up");
-      document.querySelector("#getarticle").scrollTop -= 150;
+      document.querySelector("#getarticle").scrollTop -= 0;
     }
   }
 
