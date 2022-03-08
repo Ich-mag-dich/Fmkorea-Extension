@@ -1,5 +1,13 @@
 //test
 
+function timewait(sec) {
+  let start = Date.now(),
+    now = start;
+  while (now - start < sec * 1000) {
+    now = Date.now();
+  }
+}
+
 var clicktitle = document.querySelectorAll(".title.hotdeal_var8");
 var clicktitle2 = document.querySelectorAll(".title");
 
@@ -85,7 +93,7 @@ function getrep(link, reppagenum2) {
   xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
   xmlHttp.send(null);
 }
-
+//[4].dataset.original
 function getdiv(link) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function () {
@@ -205,10 +213,11 @@ function getdiv(link) {
         choobanresult.style.fontSize = "24px";
         choobanresult.style.fontWeight = "bold";
         //ban.append(el.querySelector(".vote3"));
+
         try {
           atcTitle.innerHTML = `<br><br>${
             el.querySelector(
-              "#bd_capture > div.rd_hd.clear > div.board.clear > div.top_area.ngeb > h1 > span"
+              "#bd_capture > div.rd_hd.clear > div.board.clear > div.top_area.ngeb > h1 > span.np_18px_span"
             ).innerText
           }`;
         } catch {}
@@ -235,13 +244,13 @@ function getdiv(link) {
         //ban.style.display = "inline-block";
         username.style.marginLeft = "40px";
         //chooban.append("<br><br><br>");
-        votediv.append(voteup);
-        votediv.append(votedown);
+        //votediv.append(voteup);
+        //votediv.append(votedown);
         votediv.append(brbr);
 
-        chooban.append(choo);
+        //chooban.append(choo);
         chooban.append(choobanresult);
-        chooban.append(ban);
+        //chooban.append(ban);
 
         articleFrame.appendChild(atcTitle);
         articleFrame.appendChild(username);
@@ -284,6 +293,10 @@ function getdiv(link) {
         articleFrame.style.backgroundColor = "rgba( 255, 255, 255, 0.9 )";
         articleFrame.style.width = "900px";
         articleFrame.style.maxWidth = "900px";
+        articleFrame.style.opacity = "1";
+        articleFrame.style.transition = "1s";
+        articleFrame.style.animation = "fadein 3s";
+
         articleFrame.style.zIndex = "102";
         articleFrame.style.marginTop = "100px";
         articleFrame.style.borderRadius = "10px";
@@ -312,6 +325,8 @@ function getdiv(link) {
         //frame.style.backgroundColor = "rgba(109, 109, 109, 0.5)";
 
         document.querySelector("#header").append(frame);
+        $("#getarticle").fadeOut(0);
+        $("#getarticle").fadeIn(200);
         articlecheck = true;
         document.querySelector(
           "#arcTitle"
@@ -478,36 +493,49 @@ function getdiv(link) {
               "none";
           }
         }
-        var imgtag = $("p").find("img");
+        //document.querySelector("#bd_capture > div.rd_body.clear > article > div")
+        //document.querySelector("#bd_capture > div.rd_body.clear > article")
+        var imgtag = $("#articlediv").find("img");
         var imgtt = $("#articlediv").find("img");
         let imgs1 = $(`#articlediv`).find(`img`);
         var imgtaglen = imgtag.length;
+        // console.log(imgtaglen);
+        // console.log(imgtag.innerHTML);
         var imgttlen = imgtt.length;
         //#articlediv > img:nth-child(7)
         //#articlediv > img:nth-child(10)
         //#articlediv > img:nth-child(1)
         //#articlediv > img:nth-child(10)
+
+        //document.querySelector("#pi__988543626_581428440 > img:nth-child(13)")
+        //
+        //console.log(imgtag[4].dataset.original);
+        // console.log(imgtag);
+        //
+
         for (i = 0; i < imgtaglen; i++) {
           if (`${imgtag[i].src}`.includes("transparent.gif")) {
             //console.log(imgtag[i].dataset.dataOriginal);
-            var iti = imgtag[i].parentElement.innerHTML;
-            var iti1 = iti.split('data-original="');
-            var iti2 = iti1[1].split('" alt="');
-            imgtag[i].src = iti2[0];
+            // var iti = imgtag[i].parentElement.innerHTML;
+            // var iti1 = iti.split('data-original="');
+            // var iti2 = iti1[1].split('" alt="');
+            if (imgtag[i].dataset.original != null) {
+              imgtag[i].src = imgtag[i].dataset.original;
+            }
           }
-          //console.log(imgtag[i].src);
+          // console.log(imgtag[i].src);
         }
-        for (i = 0; i < imgttlen; i++) {
-          if (`${imgs1[i].src}`.includes("transparent.gif")) {
-            let iti3 = imgs1[i].outerHTML;
-            let iti4 = iti3.split('data-original="');
-            let iti5 = iti4[1].split('" alt="');
-            let iti6 = iti5[0].split('" src="');
-            console.log(iti6[0]);
-            imgs1[i].src = iti6[0];
-          }
-          //console.log(imgs1[i]);
-        }
+        // for (i = 0; i < imgttlen; i++) {
+        //   if (`${imgs1[i].src}`.includes("transparent.gif")) {
+        //     let iti3 = imgs1[i].outerHTML;
+        //     let iti4 = iti3.split('data-original="');
+        //     let iti5 = iti4[1].split('" alt="');
+        //     let iti6 = iti5[0].split('" src="');
+        //     console.log(iti6[0]);
+        //     imgs1[i].src = iti6[0];
+        //   }
+        //   //console.log(imgs1[i]);
+        // }
 
         //video
         var videos = $("video");
@@ -535,6 +563,13 @@ function getdiv(link) {
           $("#delete").remove();
         }
         $("#addjquery").remove();
+
+        // 아래처럼 하면 사진이 3장 이상일때 3장만 나옴
+
+        // //document.querySelector("#bd_capture > div.rd_body.clear > article")
+        // articleFrame.appendChild(
+        //   el.querySelector("#bd_capture > div.rd_body.clear > article")
+        // );
       } //document.querySelector("#getarticle")
     }
   }; //http://api.allorigins.win/raw?url=
@@ -546,7 +581,10 @@ function getdiv(link) {
 document.addEventListener("click", function (e) {
   if (articlecheck == true) {
     if (e.target.id == "container") {
-      document.querySelector("#getarticle").remove();
+      $("#getarticle").fadeOut(300);
+      setTimeout(function () {
+        document.querySelector("#getarticle").remove();
+      }, 300);
       document.body.style.overflow = "scroll";
       articlecheck = false;
     } else if (e.target == "html") {
@@ -613,11 +651,13 @@ for (const title2 of clicktitle2) {
         if (articlecheck == false) {
           articlecheck = true;
           if (title2.parentElement.className === "notice notice_pop0") {
+            // 공지 게시글
             //console.log(title2.parentElement.className);
             //console.log(title2.querySelector("a").href);
             getCookie(title2.querySelector("a").href);
             getdiv(title2.querySelector("a").href);
           } else if (title2.parentElement.className === "li") {
+            //포텐 게시글
             //console.log(title2.parentElement.className);
             getdiv(title2.querySelector("a").href);
             getCookie(title2.querySelector("a").href);
@@ -658,7 +698,10 @@ for (const title2 of clicktitle2) {
 window.onkeydown = event => {
   if (event.keyCode == 27) {
     if (articlecheck == true) {
-      document.querySelector("#getarticle").remove();
+      $("#getarticle").fadeOut(300);
+      setTimeout(function () {
+        document.querySelector("#getarticle").remove();
+      }, 300);
       document.body.style.overflow = "scroll";
 
       articlecheck = false;
