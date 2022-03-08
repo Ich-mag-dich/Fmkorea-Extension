@@ -671,7 +671,7 @@ window.onkeydown = event => {
       setTimeout(function () {
         document.querySelector("#getarticle").remove();
       }, 300);
-      document.body.style.overflowX = "hidden";
+      document.body.style.overflowY = "scroll";
 
       articlecheck = false;
     }
@@ -686,7 +686,7 @@ document.addEventListener("click", function (e) {
       setTimeout(function () {
         document.querySelector("#getarticle").remove();
       }, 300);
-      document.body.style.overflowX = "hidden";
+      document.body.style.overflowY = "scroll";
       articlecheck = false;
     } else if (e.target == "html") {
       //console.log("html");
