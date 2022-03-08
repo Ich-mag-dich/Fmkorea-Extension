@@ -578,38 +578,6 @@ function getdiv(link) {
   xmlHttp.send(null);
 }
 
-document.addEventListener("click", function (e) {
-  if (articlecheck == true) {
-    if (e.target.id == "container") {
-      $("#getarticle").fadeOut(300);
-      setTimeout(function () {
-        document.querySelector("#getarticle").remove();
-      }, 300);
-      document.body.style.overflow = "scroll";
-      articlecheck = false;
-    } else if (e.target == "html") {
-      //console.log("html");
-    }
-    //alert(e.target.id, e.target.className);
-    // if (
-    //   e.target.nodeName != "DIV" &&
-    //   e.target.nodeName != "LI" &&
-    //   e.target.nodeName != "I" &&
-    //   e.target.nodeName != "H1" &&
-    //   e.target.nodeName != "IMG" &&
-    //   e.target.nodeName != "A" &&
-    //   e.target.nodeName != "B"
-    // ) {
-    //   document.querySelector("#getarticle").remove();
-    //   articlecheck = false;
-    //   // alert(e.target.nodeName);
-    // }
-    //alert(e.target.nodeName);
-    //document.querySelector("#getarticle").remove();
-    //articlecheck = false;
-  }
-});
-
 for (const title12 of clicktitle) {
   title12.addEventListener(
     "contextmenu",
@@ -697,17 +665,51 @@ for (const title2 of clicktitle2) {
 
 window.onkeydown = event => {
   if (event.keyCode == 27) {
+    // esc키 눌렀을때
     if (articlecheck == true) {
       $("#getarticle").fadeOut(300);
       setTimeout(function () {
         document.querySelector("#getarticle").remove();
       }, 300);
-      document.body.style.overflow = "scroll";
+      document.body.style.overflowX = "hidden";
 
       articlecheck = false;
     }
   }
 };
+
+document.addEventListener("click", function (e) {
+  if (articlecheck == true) {
+    if (e.target.id == "container") {
+      //미리보기 페이지 외부 클릭했을때
+      $("#getarticle").fadeOut(300);
+      setTimeout(function () {
+        document.querySelector("#getarticle").remove();
+      }, 300);
+      document.body.style.overflowX = "hidden";
+      articlecheck = false;
+    } else if (e.target == "html") {
+      //console.log("html");
+    }
+    //alert(e.target.id, e.target.className);
+    // if (
+    //   e.target.nodeName != "DIV" &&
+    //   e.target.nodeName != "LI" &&
+    //   e.target.nodeName != "I" &&
+    //   e.target.nodeName != "H1" &&
+    //   e.target.nodeName != "IMG" &&
+    //   e.target.nodeName != "A" &&
+    //   e.target.nodeName != "B"
+    // ) {
+    //   document.querySelector("#getarticle").remove();
+    //   articlecheck = false;
+    //   // alert(e.target.nodeName);
+    // }
+    //alert(e.target.nodeName);
+    //document.querySelector("#getarticle").remove();
+    //articlecheck = false;
+  }
+});
 
 document.querySelector("#container").addEventListener("wheel", function (e) {
   if (document.querySelector("#getarticle") != null) {
