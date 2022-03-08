@@ -552,6 +552,8 @@ function getdiv(link) {
           videosrc.type = "video/mp4";
           videohtml.loop = true;
           videohtml.controls = true;
+          videohtml.controlsList = "nofullscreen";
+          videohtml.volume = 0.5;
           if (`${vdsp2}`.includes("gif")) {
             videohtml.autoplay = true;
           } else {
