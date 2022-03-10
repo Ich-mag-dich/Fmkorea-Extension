@@ -152,10 +152,14 @@ function getdiv(link) {
         //#comment_3517172969_
         //console.log(el.innerHTML);
         document.body.style.overflow = "hidden";
+        var bestrepTF = false;
         try {
           var reppagenum = parseInt(el.querySelector(".this"));
-          var bestrep = el.querySelectorAll(".fdb_itm.clear.comment_best");
+          var bestrep = el.querySelectorAll(
+            ".fdb_itm.clear.comment_best .comment-2"
+          );
           if (bestrep[0] != null) {
+            var bestrepTF = true;
             var repbr = document.createElement("div");
             repbr.innerHTML = "<br><br><br>";
             replDiv.append(repbr);
@@ -170,7 +174,6 @@ function getdiv(link) {
           if (bestrep[3] != null) {
             replDiv.append(bestrep[3]);
           }
-
           // for (i = 1; i <= reppagenum; i++) {
           //   //console.log(getrep(link, i));
           //   replDiv.append(getrep(link, i));
@@ -213,7 +216,6 @@ function getdiv(link) {
         choobanresult.style.fontSize = "24px";
         choobanresult.style.fontWeight = "bold";
         //ban.append(el.querySelector(".vote3"));
-
         try {
           atcTitle.innerHTML = `<br><br>${
             el.querySelector(
@@ -225,9 +227,17 @@ function getdiv(link) {
         var 댓글 = document.createElement("div");
 
         try {
-          댓글.innerHTML = `<br><br>${
-            el.querySelector("#cmtPosition > ul").innerHTML
-          }<br><br>`;
+          // 일반 댓글
+          console.log(bestrepTF);
+          if (bestrepTF === true) {
+            댓글.innerHTML = `${
+              el.querySelector("#cmtPosition > ul").innerHTML
+            }<br><br>`;
+          } else {
+            댓글.innerHTML = `<br><br>${
+              el.querySelector("#cmtPosition > ul").innerHTML
+            }<br><br>`;
+          }
           replDiv.append(댓글);
         } catch {
           replDiv.innerHTML = "<br><br>댓글이 없어용 ;ㅅ;";
@@ -236,6 +246,7 @@ function getdiv(link) {
           replDiv.style.fontSize = "24px";
           replDiv.style.fontWeight = "bold";
         }
+        var bestrepTF = false;
         replDiv.style.listStyle = "none";
         replDiv.style.marginLeft = "20px";
         //choo.style.display = "inline-block";
