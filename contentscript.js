@@ -566,6 +566,11 @@ function getdiv(link) {
         }
         $("#addjquery").remove();
 
+        let writerReps = document.getElementsByClassName("document_writer");
+        //console.log(writerReps);
+        for (const writerRep of writerReps) {
+          writerRep.querySelector("div").style.color = "#045cdf";
+        }
         // 아래처럼 하면 사진이 3장 이상일때 3장만 나옴
 
         // //document.querySelector("#bd_capture > div.rd_body.clear > article")
@@ -587,13 +592,13 @@ for (const title12 of clicktitle) {
       if (document.querySelector("#getarticle") == null) {
         if (articlecheck == false) {
           articlecheck = true;
-          var sc = document.createElement("script");
-          sc.id = "addjquery";
-          sc.type = "text/javascript";
-          sc.src = "https://code.jquery.com/jquery-3.6.0.min.js";
-          sc.integrity = "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=";
-          sc.crossOrigin = "anonymous";
-          document.getElementsByTagName("head")[0].appendChild(sc);
+          // var sc = document.createElement("script");
+          // sc.id = "addjquery";
+          // sc.type = "text/javascript";
+          // sc.src = "https://code.jquery.com/jquery-3.6.0.min.js";
+          // sc.integrity = "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=";
+          // sc.crossOrigin = "anonymous";
+          // document.getElementsByTagName("head")[0].appendChild(sc);
           getdiv(title12.querySelector("a").href);
           //console.log(title12.querySelector("a").href);
           getCookie(title12.querySelector("a").href);
