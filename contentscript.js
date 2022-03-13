@@ -645,6 +645,7 @@ for (const title2 of clicktitle2) {
           } else if (title2.parentElement.className === "li") {
             //포텐 게시글
             //console.log(title2.parentElement.className);
+            title2.parentElement.parentElement.className = `${title2.parentElement.parentElement.className} li_visited`;
             getdiv(title2.querySelector("a").href);
             getCookie(title2.querySelector("a").href);
             //console.log(title2.querySelector("a").href);

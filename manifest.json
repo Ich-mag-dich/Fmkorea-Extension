@@ -5,7 +5,8 @@
     "manifest_version": 3,
     
     "permissions": [
-      "activeTab"
+      "activeTab",
+      "cookies"
     ],
 
     "host_permissions": [
@@ -24,7 +25,7 @@
     "content_scripts": [
       {
        "matches": ["https://*.fmkorea.com/*"],
-       "js": ["thirdParty/jquery-3.6.0.min.js", "contentscript.js"]
+       "js": ["thirdParty/jquery-3.6.0.min.js", "contentscript.js", "popup.js"]
       }
   ]
   
