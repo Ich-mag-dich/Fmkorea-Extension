@@ -1,12 +1,13 @@
 {
     "name": "Fmkorea+ - 에펨코리아 게시글 미리보기",
     "description": "창을 이동하지 않고 게시글을 미리 봅니다.",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "manifest_version": 3,
     
     "permissions": [
       "activeTab",
-      "cookies"
+      "cookies",
+      "storage"
     ],
 
     "host_permissions": [

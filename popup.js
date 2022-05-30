@@ -18,3 +18,22 @@ document.addEventListener("click", function (e) {
     });
   }
 });
+
+// let volume1 = document.getElementById("volume-slider");
+// volume1.addEventListener("change", function (e) {
+//   var val = e.currentTarget.value;
+//   document.getElementById("test22").innerText = val;
+//   localStorage.getItem("fmvolume-volume") = val / 100;
+//   let user_video_volume = {
+//     user_video_volume_value: val / 100,
+//     user_video_volume_bool: true,
+//   };
+//   chrome.storage.local.set(user_video_volume, function () {
+//     //콜백
+//   });
+
+//   chrome.storage.local.get(user_video_volume, function (res) {
+//     console.log(res.user_video_volume_value);
+//     console.log(res.user_video_volume_bool);
+//   });
+// });

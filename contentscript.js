@@ -228,7 +228,7 @@ function getdiv(link) {
 
         try {
           // 일반 댓글
-          console.log(bestrepTF);
+          //console.log(bestrepTF);
           if (bestrepTF === true) {
             댓글.innerHTML = `${
               el.querySelector("#cmtPosition > ul").innerHTML
@@ -358,26 +358,31 @@ function getdiv(link) {
           imgttt = false;
         }
         var vdttt = true;
-        try {
-          var vdnum = 0;
-          while (vdttt) {
-            document.querySelectorAll("video")[vdnum].innerHTML = document
-              .querySelectorAll("video")
-              [vdnum].innerHTML.replace(">", "autoplay loop >");
-            document.querySelectorAll("video")[vdnum].style.maxWidth = "820px";
-            document.querySelectorAll("video")[vdnum].style.height = "auto";
-            if (vdnum >= 1) {
-              document.getElementById(`#videojs${z}`).innerHTML ==
-                document
-                  .getElementById(`#videojs${z}`)
-                  .innerHTML.replace(">", "autoplay loop >");
-            }
-            vdnum++;
-          }
-        } catch (e) {
-          vdnum = 0;
-          vdttt = false;
-        }
+
+        // try {
+        //   var vdnum = 0;
+        //   while (vdttt) {
+        //     document.querySelectorAll("video")[vdnum].innerHTML = document
+        //       .querySelectorAll("video")
+        //       [vdnum].innerHTML.replace(">", "autoplay loop >");
+        //     document.querySelectorAll("video")[vdnum].style.maxWidth = "820px";
+        //     document.querySelectorAll("video")[vdnum].style.height = "auto";
+        //     if (vdnum >= 1) {
+        //       document.getElementById(`#videojs${z}`).innerHTML ==
+        //         document
+        //           .getElementById(`#videojs${z}`)
+        //           .innerHTML.replace(">", "autoplay loop >");
+        //     }
+        //     vdnum++;
+        //     //
+        //     console.log(document.querySelectorAll("video")[vdnum].innerHTML);
+        //     //
+        //   }
+        // } catch (e) {
+        //   vdnum = 0;
+        //   vdttt = false;
+        // }
+
         if (document.querySelector("#scrollst") == null) {
           var style1 = document.createElement("style");
           style1.id = "scrollst";
@@ -564,7 +569,22 @@ function getdiv(link) {
           videohtml.loop = true;
           videohtml.controls = true;
           videohtml.controlsList = "nofullscreen";
-          videohtml.volume = 0.5;
+          try {
+            videohtml.volume = localStorage.getItem("fmvolume-volume");
+            // chrome.storage.local.get(fmvolumeVolume, function (res) {
+            //   console.log(res.user_video_volume_value);
+            //   console.log(res.user_video_volume_bool);
+            //   if (res.user_video_volume_bool === true) {
+            //     videohtml.volume = res.user_video_volume_value;
+            //   } else {
+            //     videohtml.volume = 0.5;
+            //   }
+            // });
+          } catch (e) {
+            videohtml.volume = 0.5;
+            console.log(e);
+          }
+
           if (`${vdsp2}`.includes("gif")) {
             videohtml.autoplay = true;
           } else {
@@ -588,7 +608,25 @@ function getdiv(link) {
         // articleFrame.appendChild(
         //   el.querySelector("#bd_capture > div.rd_body.clear > article")
         // );
-      } //document.querySelector("#getarticle")
+        try {
+          var beforeLoad = document.querySelectorAll(".beforeLoad");
+          var beforeLoad_num = beforeLoad.length;
+          // console.log(beforeLoad_num);
+          for (i = 0; i < beforeLoad_num; i++) {
+            // console.log(beforeLoad[i]);
+            // console.log(beforeLoad[i].className);
+            beforeLoad[i].className = beforeLoad[i].className.replace(
+              "beforeLoad",
+              ""
+            );
+          }
+          // while (beforeLoad_bool) {
+          //   console.log(beforeLoad[beforeLoad_num]);
+          //   beforeLoad_num++;
+          // }
+        } catch {}
+      } // end
+      //document.querySelector("#getarticle")
     }
   }; //http://api.allorigins.win/raw?url=
   xmlHttp.open("GET", `${link}`);
