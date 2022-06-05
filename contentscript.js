@@ -117,33 +117,66 @@ function getdiv(link) {
         var looknum = document.createElement("div");
         var uploadDate = document.createElement("div");
         var repPg = document.createElement("div");
+        189, 189, 189;
         var votediv = document.createElement("div");
         var voteup = document.createElement("div");
         var votedown = document.createElement("div");
         var brbr = document.createElement("div");
 
+        var stateObj = { foo: "bar" };
+        var gotitle = el.querySelector("head > title").innerText;
+        history.pushState(stateObj, `${gotitle}`, `${link}`);
+        document.querySelector("head > title").innerText =
+          el.querySelector("head > title").innerText;
+
         brbr.innerHTML = "<br><br><br>";
-        let readNum = `${link}`.replace("https://www.fmkorea.com/", "");
+        let readNum = el
+          .querySelector("#bd_capture > div.rd_body.clear > div > a")
+          .innerText.replace("https://www.fmkorea.com/", "");
+
+        votediv.innerHTML = `<a id="voteup" style="display: inline-block; position: static; cursor: pointer; width: 100px; border-style: solid; border-radius: 15px; color: #7ca2db; border-color: rgb(231, 231, 231); background-color: rgb(231, 231, 231); font-size: 20px; font-weight: bold;"onclick="fm_vote(${readNum});">추천</a>
+        <a id="votedown" style="display: inline-block; position: static; cursor: pointer; width: 100px; border-style: solid; border-radius: 15px; color: #ff8888; border-color: rgb(231, 231, 231); background-color: rgb(231, 231, 231); font-size: 20px; font-weight: bold;"onclick="fm_vote3(${readNum});">비추천</a>`;
 
         votediv.style.textAlign = "center";
-        voteup.innerText = "추천";
-        voteup.style.display = "inline";
-        voteup.style.cursor = "pointer";
-        //voteup.innerHTML = `<a id="voteup" style="cursor: pointer;" onclick="fm_vote(${readNum});">추천</a>`;
-        voteup.addEventListener("click", function () {
-          $.exec_json(
-            "document.procDocumentVoteUp",
-            { target_srl: readNum },
-            function (p) {
-              callback(p);
-            }
-          );
-          return false;
-        });
-        votedown.style.display = "inline";
-        votedown.style.cursor = "pointer";
-        votedown.innerHTML = `<a id="votedown" style="cursor: pointer;" onclick="fm_vote3(${readNum});">비추천</a>`;
-        votedown.style.marginLeft = "30px";
+        // voteup.id = "voteup";
+        // voteup.style.display = "inline-block";
+        // voteup.style.position = "static";
+        // voteup.style.cursor = "pointer";
+        // voteup.innerHTML = `<a id="voteup" style="cursor: pointer;" onclick="fm_vote(${readNum});">추천</a>`;
+
+        // voteup.style.width = "100px";
+        // voteup.style.borderStyle = "solid";
+        // voteup.style.borderRadius = "15px";
+        // voteup.style.color = "white";
+        // voteup.style.borderColor = "#bdbdbd";
+        // voteup.style.backgroundColor = "#bdbdbd";
+        // voteup.style.fontSize = "20px";
+        // voteup.style.fontWeight = "bold";
+        // voteup.onclick = `fm_vote(${readNum})`;
+
+        // voteup.addEventListener("click", function () {
+        //   // $("#choobanresult").load(link + " .new_voted_count");
+        //   document.querySelector("#choobanresult").innerText = `추천수: ${
+        //     $("#choobanresult").innerText.replace("추천수: ", "") + 1
+        //   }`;
+        // });
+
+        // votedown.style.display = "inline-block";
+        // votedown.style.position = "static";
+        // votedown.id = "votedown";
+        // votedown.style.cursor = "pointer";
+        // votedown.innerHTML = `<a id="votedown" style="cursor: pointer;" onclick="fm_vote3(${readNum});">비추천</a>`;
+        // votedown.style.marginLeft = "30px";
+
+        // votedown.style.width = "100px";
+        // voteup.style.borderStyle = "solid";
+        // votedown.addEventListener("click", function () {
+        //   // $("#choobanresult").load(link + " .new_voted_count");
+        //   document.querySelector("#choobanresult").innerText = `추천수: ${
+        //     $("#choobanresult").innerText.replace("추천수: ", "") - 1
+        //   }`;
+        // });
+
         // try {
         //   votedown.innerHTML = el.querySelector(".vote3").innerHTML;
         // } catch (e) {}
@@ -210,7 +243,7 @@ function getdiv(link) {
         try {
           choobanresult.innerHTML = `추천수: ${
             el.querySelector(".btn_img.new_voted_count").innerText
-          } <br><br><br><br>`;
+          } <br><br>`;
         } catch (e) {}
         choobanresult.style.fontFamily = `"Noto Sans CJK KR", sans-serif`;
         choobanresult.style.fontSize = "24px";
@@ -252,15 +285,18 @@ function getdiv(link) {
         //choo.style.display = "inline-block";
         choobanresult.style.textAlign = "center";
         choobanresult.style.fontWeight = "bold";
+        choobanresult.id = "choobanresult";
         //ban.style.display = "inline-block";
         username.style.marginLeft = "40px";
         //chooban.append("<br><br><br>");
         //votediv.append(voteup);
         //votediv.append(votedown);
-        votediv.append(brbr);
-
-        //chooban.append(choo);
         chooban.append(choobanresult);
+        //votediv.append(voteup);
+        //votediv.append(votedown);
+        votediv.append(brbr);
+        votediv.append(brbr);
+        //chooban.append(choo);
         //chooban.append(ban);
 
         articleFrame.appendChild(atcTitle);
@@ -731,6 +767,7 @@ window.onkeydown = event => {
       document.body.style.overflowY = "scroll";
 
       articlecheck = false;
+      history.back();
     }
   }
 };
@@ -745,6 +782,7 @@ document.addEventListener("click", function (e) {
       }, 300);
       document.body.style.overflowY = "scroll";
       articlecheck = false;
+      history.back();
     } else if (e.target == "html") {
       //console.log("html");
     }
@@ -782,3 +820,21 @@ document.querySelector("#container").addEventListener("wheel", function (e) {
   //var currentScrollValue = document.querySelector("#getarticle").scrollTop;
   ////console.log("currentScrollValue is " + currentScrollValue);
 });
+
+$(window).on("beforeunload", function () {
+  articlecheck = false;
+});
+
+// window.onpageshow = function (event) {
+//   if (event.persisted) {
+//     if (articlecheck == true) {
+//       $("#getarticle").fadeOut(300);
+//       setTimeout(function () {
+//         document.querySelector("#getarticle").remove();
+//       }, 300);
+//       document.body.style.overflowY = "scroll";
+//       articlecheck = false;
+//       history.back();
+//     }
+//   }
+// };
