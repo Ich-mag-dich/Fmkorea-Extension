@@ -122,6 +122,10 @@ function getdiv(link) {
         var voteup = document.createElement("div");
         var votedown = document.createElement("div");
         var brbr = document.createElement("div");
+        // var nowlink = location.href;
+        // if (nowlink === "https://www.fmkorea.com/") { // 사이트 홈에서는 추천이 안됨. 나중에.
+        //   console.log("https://www.fmkorea.com/");
+        // }
 
         var stateObj = { foo: "bar" };
         var gotitle = el.querySelector("head > title").innerText;
