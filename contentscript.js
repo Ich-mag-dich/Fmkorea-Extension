@@ -133,6 +133,9 @@ function getdiv(link) {
         let readNum = el
           .querySelector("#bd_capture > div.rd_body.clear > div > a")
           .innerText.replace("https://www.fmkorea.com/", "");
+        if (readNum.includes("best")) {
+          readNum = readNum.replace("best/", "");
+        }
 
         votediv.innerHTML = `<a id="voteup" style="display: inline-block; position: static; cursor: pointer; width: 100px; border-style: solid; border-radius: 15px; color: #7ca2db; border-color: rgb(231, 231, 231); background-color: rgb(231, 231, 231); font-size: 20px; font-weight: bold;"onclick="fm_vote(${readNum});">추천</a>
         <a id="votedown" style="display: inline-block; position: static; cursor: pointer; width: 100px; border-style: solid; border-radius: 15px; color: #ff8888; border-color: rgb(231, 231, 231); background-color: rgb(231, 231, 231); font-size: 20px; font-weight: bold;"onclick="fm_vote3(${readNum});">비추천</a>`;
