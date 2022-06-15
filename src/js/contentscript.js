@@ -415,9 +415,7 @@ function getdiv(link) {
           document.getElementById("bvideojs_muted1").id = "videojs1";
         } catch (e) {}
         //console.log(1 + imgtag);var clicktitle = document.querySelectorAll(".title.hotdeal_var8");
-        var clicktitle2 = document.querySelectorAll(".title");
 
-        let articlecheck = false;
         for (i in imgtag) {
           try {
             var imgtag1 = imgtag[i].querySelector("img");
