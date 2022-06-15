@@ -1,5 +1,3 @@
-//test
-
 function timewait(sec) {
   let start = Date.now(),
     now = start;
@@ -113,23 +111,19 @@ function getdiv(link) {
         var replDiv = document.createElement("div");
         var atcTitle = document.createElement("div");
         var chooban = document.createElement("div");
-        var choo = document.createElement("div");
         var choobanresult = document.createElement("div");
-        var ban = document.createElement("div");
         var username = document.createElement("div");
         var looknum = document.createElement("div");
         var uploadDate = document.createElement("div");
         var repPg = document.createElement("div");
         189, 189, 189;
         var votediv = document.createElement("div");
-        var voteup = document.createElement("div");
-        var votedown = document.createElement("div");
         var brbr = document.createElement("div");
         // var nowlink = location.href;
         // if (nowlink === "https://www.fmkorea.com/") { // 사이트 홈에서는 추천이 안됨. 나중에.
         //   console.log("https://www.fmkorea.com/");
         // }
-        console.log("1");
+
         var stateObj = { foo: "bar" };
         var gotitle = el.querySelector("head > title").innerText;
         history.pushState(stateObj, `${gotitle}`, `${link}`);
@@ -335,7 +329,6 @@ function getdiv(link) {
         frame.style.zIndex = "101";
 
         //frame.style.backgroundColor = "rgba(109, 109, 109, 0.5)";
-        console.log("2");
         document.querySelector("#header").append(frame);
         $("#getarticle").fadeOut(0);
         $("#getarticle").fadeIn(200);
@@ -358,12 +351,15 @@ function getdiv(link) {
           num = 0;
           imgttt = false;
         }
-        var vdttt = true;
+
+        // 게시글 작성자 댓글
         let writerReps = document.getElementsByClassName("document_writer");
         //console.log(writerReps);
         for (const writerRep of writerReps) {
           writerRep.querySelector("div").style.color = "#045cdf";
         }
+        //
+
         if (document.querySelector("#scrollst") == null) {
           var style1 = document.createElement("style");
           style1.id = "scrollst";
@@ -381,6 +377,36 @@ function getdiv(link) {
         hhh = strhhh.toString().replace("px", "");
         //articleFrame.style.height = `${500 + Number(hhh)}px`;
         frame.style.height = `1200px`;
+        if (
+          document
+            .querySelector(
+              "#header > div > div.logged_info > span:nth-child(7) > a"
+            )
+            .innerText.includes("다크ON")
+        ) {
+          replFrame.style.backgroundColor = "rgba( 50, 50, 50, 0.95 )";
+          articleFrame.style.backgroundColor = "rgba( 50, 50, 50, 0.95 )";
+          frame.style.boxShadow = "";
+          document.querySelector("#username > a").style.color = "white";
+          document.querySelector("#username > a").style.textDecoration = "none";
+        } else if (
+          document
+            .querySelector(
+              "#header > div > div.logged_info > span:nth-child(4) > a"
+            )
+            .innerText.includes("다크ON")
+        ) {
+          // #username > a
+          frame.style.boxShadow = "";
+          replFrame.style.backgroundColor = "rgba( 50, 50, 50, 0.95 )";
+          articleFrame.style.backgroundColor = "rgba( 50, 50, 50, 0.95 )";
+          document.querySelector("#username > a").style.color = "white";
+          document.querySelector("#username > a").style.textDecoration = "none";
+        } else {
+          frame.style.boxShadow = "rgba(109, 109, 109, 0.5) 0 0 0 9999px";
+          frame.style.backgroundColor = "rgba(109, 109, 109, 0.5)";
+          document.querySelector("#username > a").style.textDecoration = "none";
+        }
         var imgtag = document.querySelectorAll("#articlediv");
         try {
           document.getElementById("bvideojs_muted1").innerHTML = document
@@ -397,156 +423,14 @@ function getdiv(link) {
             //
           }
         } // document.querySelector("#videojs1_html5_api > source")
-        for (i in imgtag) {
-          for (z = 1; z <= 10; z++) {
-            try {
-              let vdw = document.getElementById(`#videojs${z}`);
-              vdw.style.maxwidth = "820px";
-            } catch (e) {}
-          }
-          // autoplay
-          try {
-            // document.querySelector("#videojs1")
-            // var mutedvideo =
-            //   document.getElementById("bvideojs_muted1").innerHTML;
-            // var mutedvideo1 = mutedvideo.replace(">", "autoplay >");
-            // document.getElementById("bvideojs_muted1").innerHTML = mutedvideo1;
-            var imgtag1 = imgtag[i].querySelector("video");
-            if (imgtag1.style.maxWidth !== "100%") {
-              imgtag1.style.maxWidth = "820px";
-            }
-            if (imgtag1 != null) {
-              var vd = imgtag1.parentElement.innerHTML;
-              var vd1 = imgtag1.innerHTML;
-              vd = vd.replace(">", "autoplay >");
-              vd1 = vd1.replace(">", "autoplay >");
-              imgtag1.parentElement.innerHTML = `${vd}`;
-              imgtag1.innerHTML = vd1;
-              //console.log("123123", imgtag1.parentElement.innerHTML);
-              if (imgtag1.parentElement.style.maxWidth !== "100%") {
-                imgtag1.parentElement.style.maxWidth = "820px";
-              }
-
-              document.querySelector(".vjs-sound.video-js").style.width =
-                "auto";
-            }
-            imgtag1.parentElement.style.maxWidth = "820px";
-          } catch (e) {}
-          try {
-            var aTag = document.getElementsByClassName("re_comment");
-          } catch (e) {}
-          var tttt = true;
-          try {
-            while (tttt) {
-              document.querySelector(".fdb_nav.img_tx > a").remove();
-              //console.log("지우기", i);
-            }
-          } catch (e) {
-            tttt = false;
-          }
-          if (
-            document
-              .querySelector(
-                "#header > div > div.logged_info > span:nth-child(7) > a"
-              )
-              .innerText.includes("다크ON")
-          ) {
-            replFrame.style.backgroundColor = "rgba( 50, 50, 50, 0.95 )";
-            articleFrame.style.backgroundColor = "rgba( 50, 50, 50, 0.95 )";
-            frame.style.boxShadow = "";
-            document.querySelector("#username > a").style.color = "white";
-            document.querySelector("#username > a").style.textDecoration =
-              "none";
-          } else if (
-            document
-              .querySelector(
-                "#header > div > div.logged_info > span:nth-child(4) > a"
-              )
-              .innerText.includes("다크ON")
-          ) {
-            // #username > a
-            frame.style.boxShadow = "";
-            replFrame.style.backgroundColor = "rgba( 50, 50, 50, 0.95 )";
-            articleFrame.style.backgroundColor = "rgba( 50, 50, 50, 0.95 )";
-            document.querySelector("#username > a").style.color = "white";
-            document.querySelector("#username > a").style.textDecoration =
-              "none";
-          } else {
-            frame.style.boxShadow = "rgba(109, 109, 109, 0.5) 0 0 0 9999px";
-            frame.style.backgroundColor = "rgba(109, 109, 109, 0.5)";
-            document.querySelector("#username > a").style.textDecoration =
-              "none";
-          }
-        }
+        img_idk();
         //document.querySelector("#bd_capture > div.rd_body.clear > article > div")
         //document.querySelector("#bd_capture > div.rd_body.clear > article")
-        var imgtag = $("#articlediv").find("img");
-        var imgtt = $("#articlediv").find("img");
-        let imgs1 = $(`#articlediv`).find(`img`);
-        var imgtaglen = imgtag.length;
-        // console.log(imgtaglen);
-        // console.log(imgtag.innerHTML);
-        var imgttlen = imgtt.length;
-
-        for (i = 0; i < imgtaglen; i++) {
-          if (`${imgtag[i].src}`.includes("transparent.gif")) {
-            //console.log(imgtag[i].dataset.dataOriginal);
-            // var iti = imgtag[i].parentElement.innerHTML;
-            // var iti1 = iti.split('data-original="');
-            // var iti2 = iti1[1].split('" alt="');
-            if (imgtag[i].dataset.original != null) {
-              imgtag[i].src = imgtag[i].dataset.original;
-            }
-          }
-          // console.log(imgtag[i].src);
-        }
-
+        img_dataset_origin();
         //video
-        var videos = $("video");
-        for (i = 0; i < videos.length; i++) {
-          var videohtml = document.createElement("video");
-          var videosrc = document.createElement("source");
-          try {
-            var getvideohtml = `${videos[i].outerHTML}`;
-          } catch {}
-          console.log(videos[i].parentElement.parentElement.className);
-          if (
-            videos[i].parentElement.parentElement.className !== "content_dummy"
-          ) {
-            console.log(videos[i].parentElement.parentElement.className);
-            console.log(videohtml.style.maxWidth);
-            //videos[i].style.maxWidth = "820x";
-            videohtml.style.maxWidth = "820px";
-            console.log(videohtml.style.maxWidth);
-          }
-          videohtml.style.height = "auto";
-          let vdsp = getvideohtml.split('src="');
-          let vdsp1 = vdsp[1].split('" type=');
-          let vdsp2 = vdsp1[0];
-          videosrc.src = vdsp2;
-          videosrc.type = "video/mp4";
-          videohtml.loop = true;
-          videohtml.controls = true;
-          videohtml.controlsList = "nofullscreen";
-          try {
-            videohtml.volume = localStorage.getItem("fmvolume-volume");
-          } catch (e) {
-            videohtml.volume = 0.5;
-            console.log(e);
-          }
+        video_control_func();
 
-          if (`${vdsp2}`.includes("gif")) {
-            videohtml.autoplay = true;
-          } else {
-            videohtml.autoplay = false;
-          }
-          videohtml.appendChild(videosrc);
-          videos[i].id = "delete";
-          videos[i].parentElement.append(videohtml);
-          $("#delete").remove();
-        }
         $("#addjquery").remove();
-        console.log("4");
         // 아래처럼 하면 사진이 3장 이상일때 3장만 나옴
 
         // //document.querySelector("#bd_capture > div.rd_body.clear > article")
