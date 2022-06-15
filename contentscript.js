@@ -356,7 +356,11 @@ function getdiv(link) {
           imgttt = false;
         }
         var vdttt = true;
-
+        let writerReps = document.getElementsByClassName("document_writer");
+        //console.log(writerReps);
+        for (const writerRep of writerReps) {
+          writerRep.querySelector("div").style.color = "#045cdf";
+        }
         if (document.querySelector("#scrollst") == null) {
           var style1 = document.createElement("style");
           style1.id = "scrollst";
@@ -534,11 +538,6 @@ function getdiv(link) {
         }
         $("#addjquery").remove();
 
-        let writerReps = document.getElementsByClassName("document_writer");
-        //console.log(writerReps);
-        for (const writerRep of writerReps) {
-          writerRep.querySelector("div").style.color = "#045cdf";
-        }
         // 아래처럼 하면 사진이 3장 이상일때 3장만 나옴
 
         // //document.querySelector("#bd_capture > div.rd_body.clear > article")
