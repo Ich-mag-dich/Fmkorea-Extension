@@ -394,7 +394,7 @@ function getdiv(link) {
           for (z = 1; z <= 10; z++) {
             try {
               let vdw = document.getElementById(`#videojs${z}`);
-              vdw.style.width = "820px";
+              vdw.style.maxwidth = "820px";
             } catch (e) {}
           }
           // autoplay
@@ -405,7 +405,9 @@ function getdiv(link) {
             // var mutedvideo1 = mutedvideo.replace(">", "autoplay >");
             // document.getElementById("bvideojs_muted1").innerHTML = mutedvideo1;
             var imgtag1 = imgtag[i].querySelector("video");
-            imgtag1.style.maxWidth = "820px";
+            if (imgtag1.style.maxWidth !== "100%") {
+              imgtag1.style.maxWidth = "820px";
+            }
             if (imgtag1 != null) {
               var vd = imgtag1.parentElement.innerHTML;
               var vd1 = imgtag1.innerHTML;
@@ -414,7 +416,10 @@ function getdiv(link) {
               imgtag1.parentElement.innerHTML = `${vd}`;
               imgtag1.innerHTML = vd1;
               //console.log("123123", imgtag1.parentElement.innerHTML);
-              imgtag1.parentElement.style.maxWidth = "820px";
+              if (imgtag1.parentElement.style.maxWidth !== "100%") {
+                imgtag1.parentElement.style.maxWidth = "820px";
+              }
+
               document.querySelector(".vjs-sound.video-js").style.width =
                 "auto";
             }
@@ -495,7 +500,12 @@ function getdiv(link) {
           var videohtml = document.createElement("video");
           var videosrc = document.createElement("source");
           var getvideohtml = `${videos[i].outerHTML}`;
-          videohtml.style.maxWidth = "820px";
+
+          if (
+            videohtml.parentElement.parentElement.className !== "content_dummy"
+          ) {
+            videohtml.style.maxWidth = "820x";
+          }
           videohtml.style.height = "auto";
           let vdsp = getvideohtml.split('src="');
           let vdsp1 = vdsp[1].split('" type=');
