@@ -103,6 +103,9 @@ function getdiv(link) {
         var el = document.createElement("html");
         var winY = window.pageYOffset;
         el.innerHTML = xmlHttp.responseText;
+        if (el.innerHTML.includes("beforeLoad")) {
+          el.innerHTML = el.innerHTML.replace(/beforeLoad/gi, "");
+        }
         var frame = document.createElement("div");
         var articleFrame = document.createElement("div");
         var articleDiv = document.createElement("div");
@@ -126,7 +129,7 @@ function getdiv(link) {
         // if (nowlink === "https://www.fmkorea.com/") { // 사이트 홈에서는 추천이 안됨. 나중에.
         //   console.log("https://www.fmkorea.com/");
         // }
-
+        console.log("1");
         var stateObj = { foo: "bar" };
         var gotitle = el.querySelector("head > title").innerText;
         history.pushState(stateObj, `${gotitle}`, `${link}`);
@@ -332,7 +335,7 @@ function getdiv(link) {
         frame.style.zIndex = "101";
 
         //frame.style.backgroundColor = "rgba(109, 109, 109, 0.5)";
-
+        console.log("2");
         document.querySelector("#header").append(frame);
         $("#getarticle").fadeOut(0);
         $("#getarticle").fadeIn(200);
@@ -503,12 +506,18 @@ function getdiv(link) {
         for (i = 0; i < videos.length; i++) {
           var videohtml = document.createElement("video");
           var videosrc = document.createElement("source");
-          var getvideohtml = `${videos[i].outerHTML}`;
-
+          try {
+            var getvideohtml = `${videos[i].outerHTML}`;
+          } catch {}
+          console.log(videos[i].parentElement.parentElement.className);
           if (
-            videohtml.parentElement.parentElement.className !== "content_dummy"
+            videos[i].parentElement.parentElement.className !== "content_dummy"
           ) {
-            videohtml.style.maxWidth = "820x";
+            console.log(videos[i].parentElement.parentElement.className);
+            console.log(videohtml.style.maxWidth);
+            //videos[i].style.maxWidth = "820x";
+            videohtml.style.maxWidth = "820px";
+            console.log(videohtml.style.maxWidth);
           }
           videohtml.style.height = "auto";
           let vdsp = getvideohtml.split('src="');
@@ -537,7 +546,7 @@ function getdiv(link) {
           $("#delete").remove();
         }
         $("#addjquery").remove();
-
+        console.log("4");
         // 아래처럼 하면 사진이 3장 이상일때 3장만 나옴
 
         // //document.querySelector("#bd_capture > div.rd_body.clear > article")
