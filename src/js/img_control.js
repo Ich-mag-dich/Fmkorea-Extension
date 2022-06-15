@@ -1,7 +1,6 @@
 function img_dataset_origin() {
   var imgtag = $("#articlediv").find("img");
   var imgtt = $("#articlediv").find("img");
-  let imgs1 = $(`#articlediv`).find(`img`);
   var imgtaglen = imgtag.length;
   // console.log(imgtaglen);
   // console.log(imgtag.innerHTML);
@@ -60,14 +59,14 @@ function img_idk() {
     try {
       var aTag = document.getElementsByClassName("re_comment");
     } catch (e) {}
-    var tttt = true;
+    var True_and_false = true;
     try {
-      while (tttt) {
+      while (True_and_false) {
         document.querySelector(".fdb_nav.img_tx > a").remove();
         //console.log("지우기", i);
       }
     } catch (e) {
-      tttt = false;
+      True_and_false = false;
     }
   }
 }
