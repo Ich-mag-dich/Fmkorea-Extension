@@ -464,6 +464,7 @@ function getdiv(link) {
   xmlHttp.send(null);
 }
 
+//일반 게시글
 for (const title12 of clicktitle) {
   title12.addEventListener(
     "contextmenu",
@@ -489,6 +490,7 @@ for (const title12 of clicktitle) {
   );
 }
 
+//특수 게시글 ex)공지, 포텐 등등
 for (const title2 of clicktitle2) {
   title2.addEventListener(
     "contextmenu",
@@ -497,10 +499,11 @@ for (const title2 of clicktitle2) {
       if (document.querySelector("#getarticle") == null) {
         if (articlecheck == false) {
           articlecheck = true;
-          if (title2.parentElement.className === "notice notice_pop0") {
+          if (title2.parentElement.className === "notice notice_pop0 ") {
             // 공지 게시글
             //console.log(title2.parentElement.className);
             //console.log(title2.querySelector("a").href);
+            console.log("notice notice_pop0");
             getCookie(title2.querySelector("a").href);
             getdiv(title2.querySelector("a").href);
           } else if (title2.parentElement.className === "li") {
@@ -510,7 +513,14 @@ for (const title2 of clicktitle2) {
             getdiv(title2.querySelector("a").href);
             getCookie(title2.querySelector("a").href);
             //console.log(title2.querySelector("a").href);
+          } else if (
+            title2.parentElement.className === "notice notice_pop0 fold"
+          ) {
+            console.log("notice notice_pop0 fold");
+            getCookie(title2.querySelector("a").href);
+            getdiv(title2.querySelector("a").href);
           } else {
+            console.log("else");
             getdiv(title2.href);
             getCookie(title2.href);
             //console.log(title2.href);
