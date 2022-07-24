@@ -207,6 +207,13 @@ function getdiv(link) {
         choobanresult.style.fontFamily = `"Noto Sans CJK KR", sans-serif`;
         choobanresult.style.fontSize = "24px";
         choobanresult.style.fontWeight = "bold";
+        if (el.querySelector(".btn_img.new_voted_count").innerText > 0) {
+          choobanresult.style.color = "#7ca2db";
+        } else if (el.querySelector(".btn_img.new_voted_count").innerText < 0) {
+          choobanresult.style.color = "#ff8888";
+        } else {
+          choobanresult.style.color = "gray";
+        }
         //ban.append(el.querySelector(".vote3"));
         try {
           atcTitle.innerHTML = `<br><br>${
