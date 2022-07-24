@@ -8,7 +8,7 @@
       "activeTab",
       "cookies"
     ],
-
+    
     "host_permissions": [
       "https://*.fmkorea.com/*",
       "*://*/*"
