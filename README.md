@@ -1,12 +1,16 @@
 # Fmkorea-Extension
 
-> ```다운로드 ```
-
+> `다운로드 `
 
 [<img src="https://github.com/Ich-mag-dich/Fmkorea-Extension/blob/main/src/img/releases.png?raw=true">](https://github.com/Ich-mag-dich/Fmkorea-Extension/releases)
 
+> `업데이트 내역 `
 
-> ```사용방법 ```
+```
+1.0.7 공지 게시글 미리보기 오류 수정 (2022/09/07)
+```
+
+> `사용방법 `
 
 ```
 ● 압축 해제 후 크롬 확장에 추가

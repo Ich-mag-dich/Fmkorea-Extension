@@ -207,13 +207,17 @@ function getdiv(link) {
         choobanresult.style.fontFamily = `"Noto Sans CJK KR", sans-serif`;
         choobanresult.style.fontSize = "24px";
         choobanresult.style.fontWeight = "bold";
-        if (el.querySelector(".btn_img.new_voted_count").innerText > 0) {
-          choobanresult.style.color = "#7ca2db";
-        } else if (el.querySelector(".btn_img.new_voted_count").innerText < 0) {
-          choobanresult.style.color = "#ff8888";
-        } else {
-          choobanresult.style.color = "gray";
-        }
+        try {
+          if (el.querySelector(".btn_img.new_voted_count").innerText > 0) {
+            choobanresult.style.color = "#7ca2db";
+          } else if (
+            el.querySelector(".btn_img.new_voted_count").innerText < 0
+          ) {
+            choobanresult.style.color = "#ff8888";
+          } else {
+            choobanresult.style.color = "gray";
+          }
+        } catch {}
         //ban.append(el.querySelector(".vote3"));
         try {
           atcTitle.innerHTML = `<br><br>${
@@ -486,10 +490,12 @@ for (const title12 of clicktitle) {
           // sc.integrity = "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=";
           // sc.crossOrigin = "anonymous";
           // document.getElementsByTagName("head")[0].appendChild(sc);
-          getdiv(title12.querySelector("a").href);
           //console.log(title12.querySelector("a").href);
-          getCookie(title12.querySelector("a").href);
+          let getUrl = title12.querySelector("a").href;
+          console.log(getUrl);
           title12.querySelector("a").className = "visited";
+
+          getdiv(title12.querySelector("a").href);
         }
       }
     },
@@ -511,25 +517,23 @@ for (const title2 of clicktitle2) {
             //console.log(title2.parentElement.className);
             //console.log(title2.querySelector("a").href);
             console.log("notice notice_pop0");
-            getCookie(title2.querySelector("a").href);
             getdiv(title2.querySelector("a").href);
           } else if (title2.parentElement.className === "li") {
             //포텐 게시글
             //console.log(title2.parentElement.className);
             title2.parentElement.parentElement.className = `${title2.parentElement.parentElement.className} li_visited`;
             getdiv(title2.querySelector("a").href);
-            getCookie(title2.querySelector("a").href);
             //console.log(title2.querySelector("a").href);
           } else if (
-            title2.parentElement.className === "notice notice_pop0 fold"
+            title2.parentElement.className === "notice notice_pop0 fold "
           ) {
             console.log("notice notice_pop0 fold");
-            getCookie(title2.querySelector("a").href);
             getdiv(title2.querySelector("a").href);
+            let getUrl = console.log(title2.querySelector("a").href);
+            console.log(getUrl);
           } else {
-            console.log("else");
+            console.log(title2.innerHTML);
             getdiv(title2.href);
-            getCookie(title2.href);
             //console.log(title2.href);
           }
           //console.log(title2.href);
