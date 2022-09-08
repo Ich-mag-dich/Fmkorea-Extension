@@ -13,7 +13,7 @@
 > `사용방법 `
 
 ```
-● git clone https://github.com/Ich-mag-dich/Fmkorea-Extension.git
+git clone https://github.com/Ich-mag-dich/Fmkorea-Extension.git
 ```
 
 ```
