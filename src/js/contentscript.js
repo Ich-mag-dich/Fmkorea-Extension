@@ -572,11 +572,12 @@ window.onkeydown = event => {
     }
   }
 };
-
 document.addEventListener("click", function (e) {
   if (articlecheck == true) {
-    if (e.target.id == "container") {
-      //미리보기 페이지 외부 클릭했을때
+    let el = e.target;
+    let r1 = el.closest("#getarticle");
+    // console.log(Boolean(r1)); // <- 클릭한 부분 부모 중 #getarticle 포함하면 true 반환
+    if (!Boolean(r1)) {
       $("#getarticle").fadeOut(300);
       setTimeout(function () {
         document.querySelector("#getarticle").remove();
@@ -584,8 +585,6 @@ document.addEventListener("click", function (e) {
       document.body.style.overflowY = "scroll";
       articlecheck = false;
       history.back();
-    } else if (e.target == "html") {
-      //console.log("html");
     }
   }
 });
