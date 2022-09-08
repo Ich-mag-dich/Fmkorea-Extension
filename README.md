@@ -14,7 +14,9 @@
 
 ```
 ● git clone https://github.com/Ich-mag-dich/Fmkorea-Extension.git
+```
 
+```
 ● 크롬 확장 프로그램에 추가.
 
 ● 게시글 제목 우클릭으로 미리보기.
