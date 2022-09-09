@@ -295,8 +295,8 @@ function getdiv(link) {
         // font-weight: bold;;
         // letter-spacing: -1.66px;
         //articleDiv.style.position = "absolute";
-        articleDiv.style.width = "820px";
-        articleDiv.style.maxWidth = "820px";
+        articleDiv.style.width = "80%";
+        articleDiv.style.maxWidth = "80%";
         articleDiv.style.marginTop = "80px";
         articleDiv.style.zIndex = "103";
         articleDiv.style.marginLeft = "40px";
@@ -308,8 +308,8 @@ function getdiv(link) {
         articleDiv.style.fontSize = "medium";
 
         articleFrame.style.backgroundColor = "rgba( 255, 255, 255, 0.9 )";
-        articleFrame.style.width = "900px";
-        articleFrame.style.maxWidth = "900px";
+//        articleFrame.style.width = "900px";
+//        articleFrame.style.maxWidth = "900px";
         articleFrame.style.opacity = "1";
         articleFrame.style.transition = "1s";
         articleFrame.style.animation = "fadein 3s";
@@ -318,23 +318,23 @@ function getdiv(link) {
         articleFrame.style.marginTop = "100px";
         articleFrame.style.borderRadius = "10px";
 
-        replFrame.style.width = "900px";
-        replFrame.style.maxWidth = "900px";
+//        replFrame.style.width = "900px";
+//        replFrame.style.maxWidth = "900px";
         replFrame.style.backgroundColor = "rgba( 255, 255, 255, 0.9 )";
         replFrame.style.minHeight = "150px";
         replFrame.style.zIndex = "102";
         replFrame.style.marginTop = "20px";
         replFrame.style.borderRadius = "10px";
 
-        replDiv.style.width = "860px";
-        replDiv.style.maxWidth = "860px";
+        replDiv.style.width = "96%";
+        replDiv.style.maxWidth = "96%";
         replDiv.style.zIndex = "103";
 
-        frame.style.width = "900px";
+        frame.style.width = "auto";
         frame.style.top = `${winY - 80}px`;
         frame.style.position = "absolute";
         frame.style.marginLeft = "21%";
-        frame.style.marginRight = "auto";
+        frame.style.marginRight = "21%";
         replFrame.style.marginBottom = "200px";
         frame.id = "getarticle";
         frame.style.zIndex = "101";
