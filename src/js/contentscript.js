@@ -297,6 +297,7 @@ function getdiv(link) {
         //articleDiv.style.position = "absolute";
         articleDiv.style.width = "80%";
         articleDiv.style.maxWidth = "80%";
+        articleDiv.style.minWidth = "900px";
         articleDiv.style.marginTop = "80px";
         articleDiv.style.zIndex = "103";
         articleDiv.style.marginLeft = "40px";
