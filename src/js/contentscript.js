@@ -309,8 +309,8 @@ function getdiv(link) {
         articleDiv.style.fontSize = "medium";
 
         articleFrame.style.backgroundColor = "rgba( 255, 255, 255, 0.9 )";
-//        articleFrame.style.width = "900px";
-//        articleFrame.style.maxWidth = "900px";
+        //        articleFrame.style.width = "900px";
+        //        articleFrame.style.maxWidth = "900px";
         articleFrame.style.opacity = "1";
         articleFrame.style.transition = "1s";
         articleFrame.style.animation = "fadein 3s";
@@ -319,8 +319,8 @@ function getdiv(link) {
         articleFrame.style.marginTop = "100px";
         articleFrame.style.borderRadius = "10px";
 
-//        replFrame.style.width = "900px";
-//        replFrame.style.maxWidth = "900px";
+        //        replFrame.style.width = "900px";
+        //        replFrame.style.maxWidth = "900px";
         replFrame.style.backgroundColor = "rgba( 255, 255, 255, 0.9 )";
         replFrame.style.minHeight = "150px";
         replFrame.style.zIndex = "102";
@@ -363,7 +363,6 @@ function getdiv(link) {
           num = 0;
           imgttt = false;
         }
-
         // 게시글 작성자 댓글
         let writerReps = document.getElementsByClassName("document_writer");
         //console.log(writerReps);
