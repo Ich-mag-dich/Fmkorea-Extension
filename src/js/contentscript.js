@@ -309,8 +309,8 @@ function getdiv(link) {
         articleDiv.style.fontSize = "medium";
 
         articleFrame.style.backgroundColor = "rgba( 255, 255, 255, 0.9 )";
-//        articleFrame.style.width = "900px";
-//        articleFrame.style.maxWidth = "900px";
+        //        articleFrame.style.width = "900px";
+        //        articleFrame.style.maxWidth = "900px";
         articleFrame.style.opacity = "1";
         articleFrame.style.transition = "1s";
         articleFrame.style.animation = "fadein 3s";
@@ -319,8 +319,8 @@ function getdiv(link) {
         articleFrame.style.marginTop = "100px";
         articleFrame.style.borderRadius = "10px";
 
-//        replFrame.style.width = "900px";
-//        replFrame.style.maxWidth = "900px";
+        //        replFrame.style.width = "900px";
+        //        replFrame.style.maxWidth = "900px";
         replFrame.style.backgroundColor = "rgba( 255, 255, 255, 0.9 )";
         replFrame.style.minHeight = "150px";
         replFrame.style.zIndex = "102";
@@ -355,14 +355,21 @@ function getdiv(link) {
         try {
           var num = 0;
           while (imgttt) {
-            document.querySelectorAll("img")[num].style.maxWidth = "820px";
-            document.querySelectorAll("img")[num].style.height = "auto";
+            if (
+              !document.querySelectorAll("img")[num].className.includes("icon")
+            ) {
+              document.querySelectorAll("img")[num].style.maxWidth = "820px";
+              document.querySelectorAll("img")[num].style.height = "auto";
+              document.querySelectorAll("img")[num].className = "imgs";
+            }
             num++;
           }
         } catch (e) {
+          console.log(num);
           num = 0;
           imgttt = false;
         }
+        var imgs = document.querySelectorAll(".imgs");
 
         // 게시글 작성자 댓글
         let writerReps = document.getElementsByClassName("document_writer");
@@ -608,3 +615,27 @@ document.querySelector("#container").addEventListener("wheel", function (e) {
 $(window).on("beforeunload", function () {
   articlecheck = false;
 });
+
+// var images = document.querySelectorAll("img");
+// // images.addEventListener("click", e => {
+// //   if (e.className === "imgs") {
+// //     console.log(e);
+// //   }
+// // });
+
+// for (const oneImage of images) {
+//   oneImage.addEventListener(
+//     "click",
+//     function (e) {
+//       if (oneImage.className === "imgs") {
+//         console.log(oneImage);
+//       }
+//     },
+//     false
+//   );
+// }
+
+// // 이미지 클릭시 원본이미지 보여주는 기능 만들고 있는 중
+// // 이미지 클릭시 <- 이 부분을 만드는 중
+// // 아마 위에 이미지 후처리 다 하고 후처리 한 이미지들을 셀렉 해놓는게 맞는느낌 듦.
+// // 나중에 이거 보면 다시 해보기.
