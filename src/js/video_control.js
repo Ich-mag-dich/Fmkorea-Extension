@@ -21,7 +21,6 @@ function video_control_func() {
       let vdsp2 = vdsp1[0];
       videosrc.src = vdsp2;
       videosrc.type = "video/mp4";
-      videohtml.loop = true;
       videohtml.controls = true;
       videohtml.controlsList = "nofullscreen";
       try {
@@ -33,8 +32,10 @@ function video_control_func() {
 
       if (`${vdsp2}`.includes("gif")) {
         videohtml.autoplay = true;
+        videohtml.loop = true;
       } else {
         videohtml.autoplay = false;
+        videohtml.loop = false;
       }
       videohtml.appendChild(videosrc);
       videos[i].id = "delete";
