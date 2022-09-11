@@ -352,31 +352,45 @@ function getdiv(link) {
         document.querySelector("#username > a").style.color = "black";
         document.querySelector("#username > a").style.textDecoration = "none";
         var imgttt = true;
-        try {
-          var num = 0;
-          while (imgttt) {
-            if (
-              document
-                .querySelectorAll("img")
-                [num].className.includes("icon") ||
-              document
-                .queryselectorall("img")
-                [num].className.includes("thumb") ||
-              document.queryselectorall("img")[num].src.includes("logos")
-            ) {
-              //
-            } else {
-              document.querySelectorAll("img")[num].style.maxWidth = "820px";
-              document.querySelectorAll("img")[num].style.height = "auto";
-              document.querySelectorAll("img")[num].className = "imgs";
-            }
-            num++;
+        for (i = 0; i < document.querySelectorAll("img").length; i++) {
+          if (
+            document.querySelectorAll("img")[i].className.includes("icon") ||
+            document.querySelectorAll("img")[i].className.includes("thumb") ||
+            document.querySelectorAll("img")[i].src.includes("logos")
+          ) {
+            //
+          } else {
+            document.querySelectorAll("img")[i].style.maxWidth = "820px";
+            document.querySelectorAll("img")[i].style.height = "auto";
+            document.querySelectorAll("img")[i].className = "imgs";
           }
-        } catch (e) {
-          console.log(num);
-          num = 0;
-          imgttt = false;
         }
+        // try {
+        //   var num = 0;
+        //   while (imgttt) {
+        //     if (
+        //       document
+        //         .querySelectorAll("img")
+        //         [num].className.includes("icon") ||
+        //       document
+        //         .queryselectorall("img")
+        //         [num].className.includes("thumb") ||
+        //       document.queryselectorall("img")[num].src.includes("logos")
+        //     ) {
+        //       //
+        //     } else {
+        //       document.querySelectorAll("img")[num].style.maxWidth = "820px";
+        //       document.querySelectorAll("img")[num].style.height = "auto";
+        //       document.querySelectorAll("img")[num].className = "imgs";
+        //     }
+        //     num++;
+        //   }
+        // } catch (e) {
+        //   console.log(num);
+        //   console.log("error");
+        //   num = 0;
+        //   imgttt = false;
+        // }
 
         // 게시글 작성자 댓글
         let writerReps = document.getElementsByClassName("document_writer");
