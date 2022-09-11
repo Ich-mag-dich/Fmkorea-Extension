@@ -356,8 +356,13 @@ function getdiv(link) {
           var num = 0;
           while (imgttt) {
             if (
-              !document.querySelectorAll("img")[num].className.includes("icon")
+              document
+                .querySelectorAll("img")
+                [num].className.includes("icon") ||
+              document.querySelectorAll("img")[num].className.includes("thumb")
             ) {
+              //
+            } else {
               document.querySelectorAll("img")[num].style.maxWidth = "820px";
               document.querySelectorAll("img")[num].style.height = "auto";
               document.querySelectorAll("img")[num].className = "imgs";
