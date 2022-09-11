@@ -359,7 +359,10 @@ function getdiv(link) {
               document
                 .querySelectorAll("img")
                 [num].className.includes("icon") ||
-              document.querySelectorAll("img")[num].className.includes("thumb")
+              document
+                .queryselectorall("img")
+                [num].className.includes("thumb") ||
+              document.queryselectorall("img")[num].src.includes("logos")
             ) {
               //
             } else {
@@ -443,6 +446,7 @@ function getdiv(link) {
           try {
             var imgtag1 = imgtag[i].querySelector("img");
             imgtag1.style.maxWidth = "820px";
+            imgtag1.style.height = "auto";
           } catch (e) {
             //
           }
