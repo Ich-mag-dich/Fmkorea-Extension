@@ -351,7 +351,6 @@ function getdiv(link) {
 
         document.querySelector("#username > a").style.color = "black";
         document.querySelector("#username > a").style.textDecoration = "none";
-        var imgttt = true;
         for (i = 0; i < document.querySelectorAll("img").length; i++) {
           if (
             document.querySelectorAll("img")[i].className.includes("icon") ||
