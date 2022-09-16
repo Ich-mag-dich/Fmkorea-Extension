@@ -6,6 +6,65 @@ function timewait(sec) {
   }
 }
 
+function elFadeIn(elem, ms) {
+  if (!elem) {
+    return;
+  }
+  elem.style.opacity = 0;
+  elem.style.filter = "alpha(opacity=0)";
+  elem.style.display = "inline-block";
+  elem.style.visibility = "visible";
+  if( ms )
+  {
+    var opacity = 0;
+    var timer = setInterval( function() {
+      opacity += 50 / ms;
+      if( opacity >= 1 )
+      {
+        clearInterval(timer);
+        opacity = 1;
+      }
+      elem.style.opacity = opacity;
+      elem.style.filter = "alpha(opacity=" + opacity * 100 + ")";
+    }, 50 );
+  }
+  else
+  {
+    elem.style.opacity = 1;
+    elem.style.filter = "alpha(opacity=1)";
+  }
+}
+
+function elFadeOut( elem, ms )
+{
+  if( ! elem )
+    return;
+
+  if( ms )
+  {
+    var opacity = 1;
+    var timer = setInterval( function() {
+      opacity -= 50 / ms;
+      if( opacity <= 0 )
+      {
+        clearInterval(timer);
+        opacity = 0;
+        elem.style.display = "none";
+        elem.style.visibility = "hidden";
+      }
+      elem.style.opacity = opacity;
+      elem.style.filter = "alpha(opacity=" + opacity * 100 + ")";
+    }, 50 );
+  }
+  else
+  {
+    elem.style.opacity = 0;
+    elem.style.filter = "alpha(opacity=0)";
+    elem.style.display = "none";
+    elem.style.visibility = "hidden";
+  }
+}
+
 var clicktitle = document.querySelectorAll(".title.hotdeal_var8");
 var clicktitle2 = document.querySelectorAll(".title");
 
@@ -237,7 +296,7 @@ function getdiv(link) {
               el.querySelector("#cmtPosition > ul").innerHTML
             }<br><br>`;
           } else {
-            댓글.innerHTML = `<br><br>${
+            댓글.innerHTML = `1<br><br>${
               el.querySelector("#cmtPosition > ul").innerHTML
             }<br><br>`;
           }
@@ -342,8 +401,10 @@ function getdiv(link) {
 
         //frame.style.backgroundColor = "rgba(109, 109, 109, 0.5)";
         document.querySelector("#header").append(frame);
-        $("#getarticle").fadeOut(0);
-        $("#getarticle").fadeIn(200);
+        //$("#getarticle").fadeOut(0);
+        //$("#getarticle").fadeIn(200);
+        elFadeOut(document.querySelector("#getarticle"), 0);
+        elFadeIn(document.querySelector("#getarticle"), 200);
         articlecheck = true;
         document.querySelector(
           "#arcTitle"
@@ -590,7 +651,7 @@ window.onkeydown = event => {
   if (event.keyCode == 27) {
     // esc키 눌렀을때
     if (articlecheck == true) {
-      $("#getarticle").fadeOut(300);
+      elFadeOut(document.querySelector("#getarticle"),300);
       setTimeout(function () {
         document.querySelector("#getarticle").remove();
       }, 300);
@@ -607,7 +668,7 @@ document.addEventListener("click", function (e) {
     let r1 = el.closest("#getarticle");
     // console.log(Boolean(r1)); // <- 클릭한 부분 부모 중 #getarticle 포함하면 true 반환
     if (!Boolean(r1)) {
-      $("#getarticle").fadeOut(300);
+      elFadeOut(document.querySelector("#getarticle"),300);
       setTimeout(function () {
         document.querySelector("#getarticle").remove();
       }, 300);
@@ -633,10 +694,10 @@ document.querySelector("#container").addEventListener("wheel", function (e) {
   ////console.log("currentScrollValue is " + currentScrollValue);
 });
 
-$(window).on("beforeunload", function () {
-  articlecheck = false;
-});
 
+window.onbeforeunload = function() {
+  articlecheck = false;
+}
 // var images = document.querySelectorAll("img");
 // // images.addEventListener("click", e => {
 // //   if (e.className === "imgs") {
