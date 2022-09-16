@@ -14,39 +14,31 @@ function elFadeIn(elem, ms) {
   elem.style.filter = "alpha(opacity=0)";
   elem.style.display = "inline-block";
   elem.style.visibility = "visible";
-  if( ms )
-  {
+  if (ms) {
     var opacity = 0;
-    var timer = setInterval( function() {
+    var timer = setInterval(function () {
       opacity += 50 / ms;
-      if( opacity >= 1 )
-      {
+      if (opacity >= 1) {
         clearInterval(timer);
         opacity = 1;
       }
       elem.style.opacity = opacity;
       elem.style.filter = "alpha(opacity=" + opacity * 100 + ")";
-    }, 50 );
-  }
-  else
-  {
+    }, 50);
+  } else {
     elem.style.opacity = 1;
     elem.style.filter = "alpha(opacity=1)";
   }
 }
 
-function elFadeOut( elem, ms )
-{
-  if( ! elem )
-    return;
+function elFadeOut(elem, ms) {
+  if (!elem) return;
 
-  if( ms )
-  {
+  if (ms) {
     var opacity = 1;
-    var timer = setInterval( function() {
+    var timer = setInterval(function () {
       opacity -= 50 / ms;
-      if( opacity <= 0 )
-      {
+      if (opacity <= 0) {
         clearInterval(timer);
         opacity = 0;
         elem.style.display = "none";
@@ -54,10 +46,8 @@ function elFadeOut( elem, ms )
       }
       elem.style.opacity = opacity;
       elem.style.filter = "alpha(opacity=" + opacity * 100 + ")";
-    }, 50 );
-  }
-  else
-  {
+    }, 50);
+  } else {
     elem.style.opacity = 0;
     elem.style.filter = "alpha(opacity=0)";
     elem.style.display = "none";
@@ -296,7 +286,7 @@ function getdiv(link) {
               el.querySelector("#cmtPosition > ul").innerHTML
             }<br><br>`;
           } else {
-            댓글.innerHTML = `1<br><br>${
+            댓글.innerHTML = `<br><br>${
               el.querySelector("#cmtPosition > ul").innerHTML
             }<br><br>`;
           }
@@ -651,7 +641,7 @@ window.onkeydown = event => {
   if (event.keyCode == 27) {
     // esc키 눌렀을때
     if (articlecheck == true) {
-      elFadeOut(document.querySelector("#getarticle"),300);
+      elFadeOut(document.querySelector("#getarticle"), 300);
       setTimeout(function () {
         document.querySelector("#getarticle").remove();
       }, 300);
@@ -668,7 +658,7 @@ document.addEventListener("click", function (e) {
     let r1 = el.closest("#getarticle");
     // console.log(Boolean(r1)); // <- 클릭한 부분 부모 중 #getarticle 포함하면 true 반환
     if (!Boolean(r1)) {
-      elFadeOut(document.querySelector("#getarticle"),300);
+      elFadeOut(document.querySelector("#getarticle"), 300);
       setTimeout(function () {
         document.querySelector("#getarticle").remove();
       }, 300);
@@ -694,10 +684,9 @@ document.querySelector("#container").addEventListener("wheel", function (e) {
   ////console.log("currentScrollValue is " + currentScrollValue);
 });
 
-
-window.onbeforeunload = function() {
+window.onbeforeunload = function () {
   articlecheck = false;
-}
+};
 // var images = document.querySelectorAll("img");
 // // images.addEventListener("click", e => {
 // //   if (e.className === "imgs") {
