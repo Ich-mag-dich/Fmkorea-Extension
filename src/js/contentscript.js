@@ -17,7 +17,7 @@ function elFadeIn(elem, ms) {
   if (ms) {
     var opacity = 0;
     var timer = setInterval(function () {
-      opacity += 50 / ms;
+      opacity += 5 / ms;
       if (opacity >= 1) {
         clearInterval(timer);
         opacity = 1;
@@ -388,13 +388,20 @@ function getdiv(link) {
         replFrame.style.marginBottom = "200px";
         frame.id = "getarticle";
         frame.style.zIndex = "101";
+        frame.style.visibility = "visible";
+        frame.style.display = "block";
+        frame.style.opacity = 0;
+        frame.style.transition = "0.3s";
 
         //frame.style.backgroundColor = "rgba(109, 109, 109, 0.5)";
         document.querySelector("#header").append(frame);
         //$("#getarticle").fadeOut(0);
         //$("#getarticle").fadeIn(200);
-        elFadeOut(document.querySelector("#getarticle"), 0);
-        elFadeIn(document.querySelector("#getarticle"), 200);
+        //elFadeOut(document.querySelector("#getarticle"), 0);
+        //elFadeIn(document.querySelector("#getarticle"), 50);
+        document.querySelector("#getarticle").style.display = "block";
+        document.querySelector("#getarticle").style.visibility = "visible";
+        frame.style.opacity = 1;
         articlecheck = true;
         document.querySelector(
           "#arcTitle"
@@ -521,8 +528,13 @@ function getdiv(link) {
         img_dataset_origin();
         //video
         video_control_func();
-
-        $("#addjquery").remove();
+        try {
+          if (document.querySelector("#addjquery") != null) {
+            document.querySelector("#addjquery").remove();
+          }
+        } catch (e) {
+          console.log(e);
+        }
         // 아래처럼 하면 사진이 3장 이상일때 3장만 나옴
 
         // //document.querySelector("#bd_capture > div.rd_body.clear > article")
@@ -641,7 +653,8 @@ window.onkeydown = event => {
   if (event.keyCode == 27) {
     // esc키 눌렀을때
     if (articlecheck == true) {
-      elFadeOut(document.querySelector("#getarticle"), 300);
+      //elFadeOut(document.querySelector("#getarticle"), 300);
+      document.querySelector("#getarticle").style.opacity = 0;
       setTimeout(function () {
         document.querySelector("#getarticle").remove();
       }, 300);
@@ -658,7 +671,8 @@ document.addEventListener("click", function (e) {
     let r1 = el.closest("#getarticle");
     // console.log(Boolean(r1)); // <- 클릭한 부분 부모 중 #getarticle 포함하면 true 반환
     if (!Boolean(r1)) {
-      elFadeOut(document.querySelector("#getarticle"), 300);
+      //elFadeOut(document.querySelector("#getarticle"), 300);
+      document.querySelector("#getarticle").style.opacity = 0;
       setTimeout(function () {
         document.querySelector("#getarticle").remove();
       }, 300);

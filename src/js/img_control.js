@@ -1,15 +1,23 @@
 function img_dataset_origin() {
-  var imgtag = $("#articlediv").find("img");
-  var imgtt = $("#articlediv").find("img");
-  var imgtaglen = imgtag.length;
-  var imgttlen = imgtt.length;
+  // var imgtag = $("#articlediv").find("img");
+  // var imgtaglen = imgtag.length;
 
-  for (i = 0; i < imgtaglen; i++) {
-    if (`${imgtag[i].src}`.includes("transparent.gif")) {
-      if (imgtag[i].dataset.original != null) {
-        imgtag[i].src = imgtag[i].dataset.original;
+  // for (i = 0; i < imgtaglen; i++) {
+  //   if (`${imgtag[i].src}`.includes("transparent.gif")) {
+  //     if (imgtag[i].dataset.original != null) {
+  //       imgtag[i].src = imgtag[i].dataset.original;
+  //     }
+  //   }
+  // }
+  let toSetImgs = document.querySelectorAll("img");
+  for (i in toSetImgs) {
+    try {
+      if (`${toSetImgs[i].src}`.includes("transparent.gif")) {
+        if (toSetImgs[i].dataset.original != null) {
+          toSetImgs[i].src = toSetImgs[i].dataset.original;
+        }
       }
-    }
+    } catch (e) {}
   }
 }
 

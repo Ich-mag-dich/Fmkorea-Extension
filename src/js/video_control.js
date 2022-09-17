@@ -1,5 +1,5 @@
 function video_control_func() {
-  var videos = $("video");
+  let videos = document.querySelectorAll("video");
   for (i = 0; i < videos.length; i++) {
     var videohtml = document.createElement("video");
     var videosrc = document.createElement("source");
