@@ -26,7 +26,7 @@ function img_idk() {
   for (i in imgtag) {
     try {
       let testCloset = imgtag[i].closest("#articlediv");
-      console.log("ok");
+      //console.log("ok");
       if (Boolean(testCloset)) {
         for (z = 1; z <= 10; z++) {
           try {

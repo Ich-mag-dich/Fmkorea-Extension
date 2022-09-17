@@ -584,7 +584,7 @@ for (const title12 of clicktitle) {
           // document.getElementsByTagName("head")[0].appendChild(sc);
           //console.log(title12.querySelector("a").href);
           let getUrl = title12.querySelector("a").href;
-          console.log(getUrl);
+          //console.log(getUrl);
           title12.querySelector("a").className = "visited";
 
           getdiv(title12.querySelector("a").href);
@@ -608,7 +608,7 @@ for (const title2 of clicktitle2) {
             // 공지 게시글
             //console.log(title2.parentElement.className);
             //console.log(title2.querySelector("a").href);
-            console.log("notice notice_pop0");
+            //console.log("notice notice_pop0");
             getdiv(title2.querySelector("a").href);
           } else if (title2.parentElement.className === "li") {
             //포텐 게시글
@@ -619,12 +619,12 @@ for (const title2 of clicktitle2) {
           } else if (
             title2.parentElement.className === "notice notice_pop0 fold "
           ) {
-            console.log("notice notice_pop0 fold");
+            //console.log("notice notice_pop0 fold");
             getdiv(title2.querySelector("a").href);
             let getUrl = console.log(title2.querySelector("a").href);
-            console.log(getUrl);
+            //console.log(getUrl);
           } else {
-            console.log(title2.innerHTML);
+            //console.log(title2.innerHTML);
             getdiv(title2.href);
             //console.log(title2.href);
           }
