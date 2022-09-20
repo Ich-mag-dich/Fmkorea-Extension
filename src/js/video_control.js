@@ -40,7 +40,7 @@ function video_control_func() {
       videohtml.appendChild(videosrc);
       videos[i].id = "delete";
       videos[i].parentElement.append(videohtml);
-      $("#delete").remove();
+      document.querySelector("#delete").remove();
     } else {
       // console.log(
       //   `no 820px ${videos[i].parentElement.parentElement.className}`
