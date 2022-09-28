@@ -558,6 +558,13 @@ function getdiv(link) {
           //   beforeLoad_num++;
           // }
         } catch {}
+        let rerepls = document.querySelectorAll(".re_comment");
+        console.log(rerepls.length);
+        try {
+          for (let rereplNum = 0; i < rerepls.length; rereplNum++) {
+            rerepls[rereplNum].remove();
+          }
+        } catch {}
       } // end
       //document.querySelector("#getarticle")
     }
