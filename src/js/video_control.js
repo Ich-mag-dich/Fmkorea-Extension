@@ -1,5 +1,4 @@
 function video_control_func() {
-  console.log("this is video control func");
   let videos = document.querySelectorAll("video");
   for (i = 0; i < videos.length; i++) {
     var videohtml = document.createElement("video");
@@ -50,5 +49,4 @@ function video_control_func() {
       // );
     }
   }
-  console.log("video func end");
 }
