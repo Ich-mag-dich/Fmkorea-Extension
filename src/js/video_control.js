@@ -21,6 +21,7 @@ function video_control_func() {
       let vdsp = getvideohtml.split('src="');
       let vdsp1 = vdsp[1].split('" type=');
       let vdsp2 = vdsp1[0];
+      videohtml.className = "addedVideo";
       videosrc.src = vdsp2;
       videosrc.type = "video/mp4";
       videohtml.controls = true;

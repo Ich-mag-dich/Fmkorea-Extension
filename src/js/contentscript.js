@@ -5,6 +5,15 @@ function timewait(sec) {
     now = Date.now();
   }
 }
+function videoVolume() {
+  let addedVideos = document.querySelectorAll(".addedVideo");
+  console.log(addedVideos);
+  console.log(addedVideos.length);
+  console.log(localStorage.getItem("fmvolume-volume"));
+  for (var vi = 0; vi <= addedVideos.length; vi++) {
+    addedVideos[vi].volume = localStorage.getItem("fmvolume-volume");
+  }
+}
 function toAutoLink(container) {
   var doc = container.innerHTML;
   var regURL = new RegExp(
@@ -143,7 +152,7 @@ function getrep(link, reppagenum2) {
   xmlHttp.send(null);
 }
 
-async function getdiv(link) {
+function getdiv(link) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState === xmlHttp.DONE) {
@@ -155,28 +164,28 @@ async function getdiv(link) {
         if (el.innerHTML.includes("beforeLoad")) {
           el.innerHTML = el.innerHTML.replace(/beforeLoad/gi, "");
         }
-        var frame = document.createElement("div");
-        var articleFrame = document.createElement("div");
-        var articleDiv = document.createElement("div");
-        var replFrame = document.createElement("div");
-        var replDiv = document.createElement("div");
-        var atcTitle = document.createElement("div");
-        var chooban = document.createElement("div");
-        var choobanresult = document.createElement("div");
-        var username = document.createElement("div");
-        var looknum = document.createElement("div");
-        var uploadDate = document.createElement("div");
-        var repPg = document.createElement("div");
+        let frame = document.createElement("div");
+        let articleFrame = document.createElement("div");
+        let articleDiv = document.createElement("div");
+        let replFrame = document.createElement("div");
+        let replDiv = document.createElement("div");
+        let atcTitle = document.createElement("div");
+        let chooban = document.createElement("div");
+        let choobanresult = document.createElement("div");
+        let username = document.createElement("div");
+        let looknum = document.createElement("div");
+        let uploadDate = document.createElement("div");
+        let repPg = document.createElement("div");
         189, 189, 189;
-        var votediv = document.createElement("div");
-        var brbr = document.createElement("div");
-        // var nowlink = location.href;
+        let votediv = document.createElement("div");
+        let brbr = document.createElement("div");
+        // let nowlink = location.href;
         // if (nowlink === "https://www.fmkorea.com/") { // 사이트 홈에서는 추천이 안됨. 나중에.
         //   console.log("https://www.fmkorea.com/");
         // }
 
-        var stateObj = { foo: "bar" };
-        var gotitle = el.querySelector("head > title").innerText;
+        let stateObj = { foo: "bar" };
+        let gotitle = el.querySelector("head > title").innerText;
         history.pushState(stateObj, `${gotitle}`, `${link}`);
         document.querySelector("head > title").innerText =
           el.querySelector("head > title").innerText;
@@ -532,7 +541,8 @@ async function getdiv(link) {
 
         // img_idk();
         // img_dataset_origin();
-
+        img_idk();
+        img_dataset_origin();
         //video
         video_control_func();
         try {
@@ -588,6 +598,7 @@ async function getdiv(link) {
             item.parentElement.remove();
           } catch {}
         });
+        videoVolume();
       } // end
       //document.querySelector("#getarticle")
     }
@@ -617,10 +628,7 @@ for (const title12 of clicktitle) {
           //console.log(getUrl);
           title12.querySelector("a").className = "visited";
 
-          getdiv(title12.querySelector("a").href).then(function () {
-            img_idk();
-            img_dataset_origin();
-          });
+          getdiv(title12.querySelector("a").href);
         }
       }
     },
