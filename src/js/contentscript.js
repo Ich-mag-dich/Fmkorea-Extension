@@ -70,14 +70,6 @@ var clicktitle2 = document.querySelectorAll(".title");
 
 let articlecheck = false;
 
-function onCaptured(imageUri) {
-  //console.log(imageUri);
-}
-
-function onError(error) {
-  //console.log(`Error: ${error}`);
-}
-
 const setCookie = function setCookie_by_name_value_period(name, value, period) {
   let date = new Date();
   date.setDate(date.getDate() + period);
@@ -151,7 +143,7 @@ function getrep(link, reppagenum2) {
   xmlHttp.send(null);
 }
 
-function getdiv(link) {
+async function getdiv(link) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState === xmlHttp.DONE) {
@@ -535,10 +527,12 @@ function getdiv(link) {
             //
           }
         } // document.querySelector("#videojs1_html5_api > source")
-        img_idk();
         //document.querySelector("#bd_capture > div.rd_body.clear > article > div")
         //document.querySelector("#bd_capture > div.rd_body.clear > article")
-        img_dataset_origin();
+
+        // img_idk();
+        // img_dataset_origin();
+
         //video
         video_control_func();
         try {
@@ -585,6 +579,9 @@ function getdiv(link) {
           toAutoLink(item);
         });
 
+        let getAtcForAutoLink = document.querySelector("#articlediv");
+        toAutoLink(getAtcForAutoLink);
+
         let bestRerepls = document.querySelectorAll(".fa-location-arrow");
         bestRerepls.forEach(function (item, index) {
           try {
@@ -620,7 +617,10 @@ for (const title12 of clicktitle) {
           //console.log(getUrl);
           title12.querySelector("a").className = "visited";
 
-          getdiv(title12.querySelector("a").href);
+          getdiv(title12.querySelector("a").href).then(function () {
+            img_idk();
+            img_dataset_origin();
+          });
         }
       }
     },

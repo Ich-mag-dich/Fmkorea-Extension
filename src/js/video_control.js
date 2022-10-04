@@ -1,11 +1,14 @@
 function video_control_func() {
+  console.log("this is video control func");
   let videos = document.querySelectorAll("video");
   for (i = 0; i < videos.length; i++) {
     var videohtml = document.createElement("video");
     var videosrc = document.createElement("source");
     try {
       var getvideohtml = `${videos[i].outerHTML}`;
-    } catch {}
+    } catch (e) {
+      console.log(e);
+    }
     //console.log(videos[i].parentElement.parentElement.className);
     if (videos[i].parentElement.parentElement.className !== "content_dummy") {
       // console.log(
@@ -47,4 +50,5 @@ function video_control_func() {
       // );
     }
   }
+  console.log("video func end");
 }
