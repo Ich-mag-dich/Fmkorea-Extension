@@ -5,7 +5,17 @@ function timewait(sec) {
     now = Date.now();
   }
 }
-
+function toAutoLink(container) {
+  var doc = container.innerHTML;
+  var regURL = new RegExp(
+    "(http|https|ftp|telnet|news|irc)://([-/.a-zA-Z0-9_~#%$?&=:200-377()]+)",
+    "gi"
+  );
+  container.innerHTML = doc.replace(
+    regURL,
+    "<a href='$1://$2' target='_blank'>$1://$2</a>"
+  );
+}
 function elFadeIn(elem, ms) {
   if (!elem) {
     return;
@@ -367,6 +377,7 @@ function getdiv(link) {
         articleFrame.style.zIndex = "102";
         articleFrame.style.marginTop = "100px";
         articleFrame.style.borderRadius = "10px";
+        articleFrame.style.width = "auto";
 
         //        replFrame.style.width = "900px";
         //        replFrame.style.maxWidth = "900px";
@@ -375,12 +386,14 @@ function getdiv(link) {
         replFrame.style.zIndex = "102";
         replFrame.style.marginTop = "20px";
         replFrame.style.borderRadius = "10px";
+        replFrame.style.width = "auto";
 
         replDiv.style.width = "96%";
         replDiv.style.maxWidth = "96%";
         replDiv.style.zIndex = "103";
 
         frame.style.width = "auto";
+        frame.style.maxWidth = "1200px";
         frame.style.top = `${winY - 80}px`;
         frame.style.position = "absolute";
         frame.style.marginLeft = "21%";
@@ -559,12 +572,25 @@ function getdiv(link) {
           // }
         } catch {}
         let rerepls = document.querySelectorAll(".re_comment");
-        console.log(rerepls.length);
         try {
           for (let rereplNum = 0; i < rerepls.length; rereplNum++) {
             rerepls[rereplNum].remove();
           }
         } catch {}
+
+        let testAutoLinkEls = document.querySelectorAll(".xe_content");
+        // console.log(testAutoLinkEls);
+        testAutoLinkEls.forEach(function (item, index) {
+          // console.log(item, index);
+          toAutoLink(item);
+        });
+
+        let bestRerepls = document.querySelectorAll(".fa-location-arrow");
+        bestRerepls.forEach(function (item, index) {
+          try {
+            item.parentElement.remove();
+          } catch {}
+        });
       } // end
       //document.querySelector("#getarticle")
     }
