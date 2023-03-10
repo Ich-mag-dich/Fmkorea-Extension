@@ -8,15 +8,8 @@ function video_control_func() {
     } catch (e) {
       console.log(e);
     }
-    //console.log(videos[i].parentElement.parentElement.className);
     if (videos[i].parentElement.parentElement.className !== "content_dummy") {
-      // console.log(
-      //   `820px ${videos[i].parentElement.parentElement.className}`
-      // );
-      //console.log(videohtml.style.maxWidth);
-      //videos[i].style.maxWidth = "820x";
       videohtml.style.maxWidth = "820px";
-      //console.log(videohtml.style.maxWidth);
       videohtml.style.height = "auto";
       let vdsp = getvideohtml.split('src="');
       let vdsp1 = vdsp[1].split('" type=');
@@ -45,9 +38,6 @@ function video_control_func() {
       videos[i].parentElement.append(videohtml);
       document.querySelector("#delete").remove();
     } else {
-      // console.log(
-      //   `no 820px ${videos[i].parentElement.parentElement.className}`
-      // );
     }
   }
 }

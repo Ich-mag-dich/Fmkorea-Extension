@@ -1,14 +1,4 @@
 function img_dataset_origin() {
-  // var imgtag = $("#articlediv").find("img");
-  // var imgtaglen = imgtag.length;
-
-  // for (i = 0; i < imgtaglen; i++) {
-  //   if (`${imgtag[i].src}`.includes("transparent.gif")) {
-  //     if (imgtag[i].dataset.original != null) {
-  //       imgtag[i].src = imgtag[i].dataset.original;
-  //     }
-  //   }
-  // }
   let toSetImgs = document.querySelectorAll("img");
   for (i in toSetImgs) {
     try {
@@ -17,7 +7,7 @@ function img_dataset_origin() {
           toSetImgs[i].src = toSetImgs[i].dataset.original;
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 }
 
@@ -26,14 +16,13 @@ function img_idk() {
   for (i in imgtag) {
     try {
       let testCloset = imgtag[i].closest("#articlediv");
-      //console.log("ok");
       if (Boolean(testCloset)) {
         for (z = 1; z <= 10; z++) {
           try {
             let vdw = document.getElementById(`#videojs${z}`);
             vdw.style.maxwidth = "820px";
             vdw.style.height = "auto";
-          } catch (e) {}
+          } catch (e) { }
         }
         try {
           var imgtag1 = imgtag[i].querySelector("video");
@@ -57,10 +46,10 @@ function img_idk() {
           }
           imgtag1.parentElement.style.maxWidth = "820px";
           imgtag1.parentElement.style.height = "auto";
-        } catch (e) {}
+        } catch (e) { }
         try {
           var aTag = document.getElementsByClassName("re_comment");
-        } catch (e) {}
+        } catch (e) { }
         var True_and_false = true;
         try {
           while (True_and_false) {

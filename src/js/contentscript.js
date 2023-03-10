@@ -35,7 +35,7 @@ function elFadeIn(elem, ms) {
   elem.style.visibility = "visible";
   if (ms) {
     var opacity = 0;
-    var timer = setInterval(function() {
+    var timer = setInterval(function () {
       opacity += 5 / ms;
       if (opacity >= 1) {
         clearInterval(timer);
@@ -55,7 +55,7 @@ function elFadeOut(elem, ms) {
 
   if (ms) {
     var opacity = 1;
-    var timer = setInterval(function() {
+    var timer = setInterval(function () {
       opacity -= 50 / ms;
       if (opacity <= 0) {
         clearInterval(timer);
@@ -79,51 +79,51 @@ var clicktitle2 = document.querySelectorAll(".title");
 
 let articlecheck = false;
 
-const setCookie = function setCookie_by_name_value_period(name, value, period) {
-  let date = new Date();
-  date.setDate(date.getDate() + period);
-  let Cookie = `${name}=${value};Expires=${date.toUTCString()}`;
-  document.cookie = Cookie;
-  //document.getElementsByClassName("content_dummy").reload();
-  //console.log("추가");
-  //$(".content_dummy").load(location.href + " .content_dummy");
-};
+// const setCookie = function setCookie_by_name_value_period(name, value, period) {
+//   let date = new Date();
+//   date.setDate(date.getDate() + period);
+//   let Cookie = `${name}=${value};Expires=${date.toUTCString()}`;
+//   document.cookie = Cookie;
+//   //document.getElementsByClassName("content_dummy").reload();
+//   //console.log("추가");
+//   //$(".content_dummy").load(location.href + " .content_dummy");
+// };
 
-var getCookie = function(url) {
-  var name = "readed_documents";
-  var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
-  ////console.log(value[2]);
-  var url1 = `${url}`;
-  if (url1.includes("listStyle")) {
-    // https://www.fmkorea.com/index.php?mid=maple&sort_index=pop&order_type=desc&document_srl=4077148422&listStyle=webzine
-    var addcookie = url1.replace(
-      "https://www.fmkorea.com/index.php?mid=maple&sort_index=pop&order_type=desc&document_srl=",
-      ""
-    ); // https://www.fmkorea.com/index.php?mid=best2&sort_index=pop&order_type=desc&document_srl
-    addcookie = addcookie.replace("&listStyle=webzine", "");
-    ////console.log(url1);
-  } else if (url1.includes("/best/")) {
-    var addcookie = url1.replace("https://www.fmkorea.com/best/", "");
-  } else if (url1.includes("mid=best2")) {
-    var addcookie = url1.replace(
-      "https://www.fmkorea.com/index.php?mid=best2&sort_index=pop&order_type=desc&document_srl=",
-      ""
-    );
-  } else {
-    var addcookie = url1.replace("https://www.fmkorea.com/", "");
-  }
-  var nowcookie = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)")[2];
-  //console.log(`nowcookie ${nowcookie}`);
-  if (!value[2].includes(`${addcookie}`)) {
-    setCookie("readed_documents", `${nowcookie}.${addcookie}`, 30);
-  } else {
-    //console.log("이미 본,,");
-  }
+// var getCookie = function(url) {
+//   var name = "readed_documents";
+//   var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+//   ////console.log(value[2]);
+//   var url1 = `${url}`;
+//   if (url1.includes("listStyle")) {
+//     // https://www.fmkorea.com/index.php?mid=maple&sort_index=pop&order_type=desc&document_srl=4077148422&listStyle=webzine
+//     var addcookie = url1.replace(
+//       "https://www.fmkorea.com/index.php?mid=maple&sort_index=pop&order_type=desc&document_srl=",
+//       ""
+//     ); // https://www.fmkorea.com/index.php?mid=best2&sort_index=pop&order_type=desc&document_srl
+//     addcookie = addcookie.replace("&listStyle=webzine", "");
+//     ////console.log(url1);
+//   } else if (url1.includes("/best/")) {
+//     var addcookie = url1.replace("https://www.fmkorea.com/best/", "");
+//   } else if (url1.includes("mid=best2")) {
+//     var addcookie = url1.replace(
+//       "https://www.fmkorea.com/index.php?mid=best2&sort_index=pop&order_type=desc&document_srl=",
+//       ""
+//     );
+//   } else {
+//     var addcookie = url1.replace("https://www.fmkorea.com/", "");
+//   }
+//   var nowcookie = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)")[2];
+//   //console.log(`nowcookie ${nowcookie}`);
+//   if (!value[2].includes(`${addcookie}`)) {
+//     setCookie("readed_documents", `${nowcookie}.${addcookie}`, 30);
+//   } else {
+//     //console.log("이미 본,,");
+//   }
 
-  //document.querySelector(".content_dummy").reload();
-  //$(".content_dummy").load(document.URL + " .content_dummy");
-  // return value ? value[2] : null;
-};
+//   //document.querySelector(".content_dummy").reload();
+//   //$(".content_dummy").load(document.URL + " .content_dummy");
+//   // return value ? value[2] : null;
+// };
 
 function changediv() {
   var nowpagediv = document.querySelector("#bd_capture").innerHTML;
@@ -133,7 +133,7 @@ function changediv() {
 
 function getrep(link, reppagenum2) {
   var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function() {
+  xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState === xmlHttp.DONE) {
       if (xmlHttp.status === 200) {
         //console.log(xmlHttp.status);
@@ -154,7 +154,7 @@ function getrep(link, reppagenum2) {
 
 function getdiv(link) {
   var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function() {
+  xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState === xmlHttp.DONE) {
       if (xmlHttp.status === 200) {
         //console.log(xmlHttp.status);
@@ -578,7 +578,7 @@ function getdiv(link) {
 
         let testAutoLinkEls = document.querySelectorAll(".xe_content");
         // console.log(testAutoLinkEls);
-        testAutoLinkEls.forEach(function(item, index) {
+        testAutoLinkEls.forEach(function (item, index) {
           // console.log(item, index);
           toAutoLink(item);
         });
@@ -587,7 +587,7 @@ function getdiv(link) {
         toAutoLink(getAtcForAutoLink);
 
         let bestRerepls = document.querySelectorAll(".fa-location-arrow");
-        bestRerepls.forEach(function(item, index) {
+        bestRerepls.forEach(function (item, index) {
           try {
             item.parentElement.remove();
           } catch { }
@@ -606,7 +606,7 @@ function getdiv(link) {
 for (const title12 of clicktitle) {
   title12.addEventListener(
     "contextmenu",
-    function() {
+    function () {
       if (document.querySelector("#getarticle") == null) {
         if (articlecheck == false) {
           articlecheck = true;
@@ -634,7 +634,7 @@ for (const title12 of clicktitle) {
 for (const title2 of clicktitle2) {
   title2.addEventListener(
     "contextmenu",
-    function(e) {
+    function (e) {
       e.preventDefault();
       if (document.querySelector("#getarticle") == null) {
         if (articlecheck == false) {
@@ -690,7 +690,7 @@ window.onkeydown = event => {
     if (articlecheck == true) {
       //elFadeOut(document.querySelector("#getarticle"), 300);
       document.querySelector("#getarticle").style.opacity = 0;
-      setTimeout(function() {
+      setTimeout(function () {
         document.querySelector("#getarticle").remove();
       }, 300);
       document.body.style.overflowY = "scroll";
@@ -700,7 +700,7 @@ window.onkeydown = event => {
     }
   }
 };
-document.addEventListener("click", function(e) {
+document.addEventListener("click", function (e) {
   if (articlecheck == true) {
     let el = e.target;
     let r1 = el.closest("#getarticle");
@@ -708,7 +708,7 @@ document.addEventListener("click", function(e) {
     if (!Boolean(r1)) {
       //elFadeOut(document.querySelector("#getarticle"), 300);
       document.querySelector("#getarticle").style.opacity = 0;
-      setTimeout(function() {
+      setTimeout(function () {
         document.querySelector("#getarticle").remove();
       }, 300);
       document.body.style.overflowY = "scroll";
@@ -718,7 +718,7 @@ document.addEventListener("click", function(e) {
   }
 });
 
-document.querySelector("#container").addEventListener("wheel", function(e) {
+document.querySelector("#container").addEventListener("wheel", function (e) {
   if (document.querySelector("#getarticle") != null) {
     if (e.wheelDelta === -120) {
       ////console.log("wheel down");
@@ -733,7 +733,7 @@ document.querySelector("#container").addEventListener("wheel", function(e) {
   ////console.log("currentScrollValue is " + currentScrollValue);
 });
 
-window.onbeforeunload = function() {
+window.onbeforeunload = function () {
   articlecheck = false;
 };
 // var images = document.querySelectorAll("img");
@@ -755,7 +755,7 @@ window.onbeforeunload = function() {
 //   );
 // }
 
-// // 이미지 클릭시 원본이미지 보여주는 기능 만들고 있는 중
+// // TODO 이미지 클릭시 원본이미지 보여주는 기능 만들고 있는 중
 // // 이미지 클릭시 <- 이 부분을 만드는 중
 // // 아마 위에 이미지 후처리 다 하고 후처리 한 이미지들을 셀렉 해놓는게 맞는느낌 듦.
 // // 나중에 이거 보면 다시 해보기.

@@ -1,32 +1,30 @@
 {
-    "name": "Fmkorea preview - 에펨코리아 게시글 미리보기",
-    "description": "창을 이동하지 않고 게시글을 미리 봅니다.",
-    "version": "1.0.14",
-    "manifest_version": 3,
-    
-    "permissions": [
-      "activeTab",
-      "cookies"
-    ],
-    
-    "host_permissions": [
-      "https://*.fmkorea.com/*",
-      "*://*/*"
-    ],
-    
-    "action": {
-        "default_icon": "./src/img/icon.png",
-        "default_popup": "./popup.html"
-      },
-    "options_page": "options.html",
-    "externally_connectable": {
+  "name": "Fmkorea preview - 에펨코리아 게시글 미리보기",
+  "description": "창을 이동하지 않고 게시글을 미리 봅니다.",
+  "version": "1.0.15",
+  "manifest_version": 3,
+
+  "permissions": ["activeTab"],
+
+  "host_permissions": ["https://*.fmkorea.com/*", "*://*/*"],
+
+  "action": {
+    "default_icon": "./src/img/icon.png",
+    "default_popup": "./popup.html"
+  },
+  "options_page": "options.html",
+  "externally_connectable": {
     "matches": ["https://*.fmkorea.com/*"]
-    },
-    "content_scripts": [
-      {
-       "matches": ["https://*.fmkorea.com/*"],
-       "js": ["./src/js/contentscript.js", "./src/js/popup.js", "./src/js/video_control.js", "./src/js/img_control.js"]
-      }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.fmkorea.com/*"],
+      "js": [
+        "./src/js/contentscript.js",
+        "./src/js/popup.js",
+        "./src/js/video_control.js",
+        "./src/js/img_control.js"
+      ]
+    }
   ]
-  
 }

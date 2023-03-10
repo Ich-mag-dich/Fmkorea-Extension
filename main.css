@@ -3,11 +3,31 @@ button {
   outline: none;
   margin: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 5;
   background-color: rgb(109, 109, 109);
   color: white;
 }
 
 button.current {
   box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+}
+
+a.option {
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+div.option {
+  margin: auto;
+  width: 700px;
+}
+span.option {
+  font-size: large;
+  font-weight: bold;
+}
+
+.github {
+  margin: auto;
+  text-align: center;
 }
