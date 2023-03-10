@@ -35,7 +35,7 @@ function elFadeIn(elem, ms) {
   elem.style.visibility = "visible";
   if (ms) {
     var opacity = 0;
-    var timer = setInterval(function () {
+    var timer = setInterval(function() {
       opacity += 5 / ms;
       if (opacity >= 1) {
         clearInterval(timer);
@@ -55,7 +55,7 @@ function elFadeOut(elem, ms) {
 
   if (ms) {
     var opacity = 1;
-    var timer = setInterval(function () {
+    var timer = setInterval(function() {
       opacity -= 50 / ms;
       if (opacity <= 0) {
         clearInterval(timer);
@@ -89,7 +89,7 @@ const setCookie = function setCookie_by_name_value_period(name, value, period) {
   //$(".content_dummy").load(location.href + " .content_dummy");
 };
 
-var getCookie = function (url) {
+var getCookie = function(url) {
   var name = "readed_documents";
   var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
   ////console.log(value[2]);
@@ -133,7 +133,7 @@ function changediv() {
 
 function getrep(link, reppagenum2) {
   var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function () {
+  xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState === xmlHttp.DONE) {
       if (xmlHttp.status === 200) {
         //console.log(xmlHttp.status);
@@ -154,7 +154,7 @@ function getrep(link, reppagenum2) {
 
 function getdiv(link) {
   var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function () {
+  xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState === xmlHttp.DONE) {
       if (xmlHttp.status === 200) {
         //console.log(xmlHttp.status);
@@ -241,29 +241,27 @@ function getdiv(link) {
           repPg.innerHTML = el.querySelector(
             "#cmtPosition > div.fdb_tag.bg_f_f9.css3pie > div"
           ).innerHTML;
-        } catch (e) {}
+        } catch (e) { }
         try {
-          looknum.innerHTML = `${
-            el.querySelector(".side.fr > span:nth-child(1)").innerHTML
-          }`;
-        } catch (e) {}
+          looknum.innerHTML = `${el.querySelector(".side.fr > span:nth-child(1)").innerHTML
+            }`;
+        } catch (e) { }
         looknum.style.textAlign = "right";
         try {
           uploadDate.innerHTML = `${el.querySelector(".date.m_no").innerHTML}`;
-        } catch (e) {}
+        } catch (e) { }
         uploadDate.style.textAlign = "right";
         //choo.append(el.querySelector(".vote_label"));
         try {
           username.innerHTML = `<br>${el.querySelector(".side").innerHTML}`;
-        } catch {}
+        } catch { }
         username.id = "username";
         looknum.style.marginRight = "40px";
         uploadDate.style.marginRight = "40px";
         try {
-          choobanresult.innerHTML = `추천수: ${
-            el.querySelector(".btn_img.new_voted_count").innerText
-          } <br><br>`;
-        } catch (e) {}
+          choobanresult.innerHTML = `추천수: ${el.querySelector(".btn_img.new_voted_count").innerText
+            } <br><br>`;
+        } catch (e) { }
         choobanresult.style.fontFamily = `"Noto Sans CJK KR", sans-serif`;
         choobanresult.style.fontSize = "24px";
         choobanresult.style.fontWeight = "bold";
@@ -277,15 +275,14 @@ function getdiv(link) {
           } else {
             choobanresult.style.color = "gray";
           }
-        } catch {}
+        } catch { }
         //ban.append(el.querySelector(".vote3"));
         try {
-          atcTitle.innerHTML = `<br><br>${
-            el.querySelector(
-              "#bd_capture > div.rd_hd.clear > div.board.clear > div.top_area.ngeb > h1 > span.np_18px_span"
-            ).innerText
-          }`;
-        } catch {}
+          atcTitle.innerHTML = `<br><br>${el.querySelector(
+            "#bd_capture > div.rd_hd.clear > div.board.clear > div.top_area.ngeb > h1 > span.np_18px_span"
+          ).innerText
+            }`;
+        } catch { }
 
         var 댓글 = document.createElement("div");
 
@@ -293,13 +290,11 @@ function getdiv(link) {
           // 일반 댓글
           //console.log(bestrepTF);
           if (bestrepTF === true) {
-            댓글.innerHTML = `${
-              el.querySelector("#cmtPosition > ul").innerHTML
-            }<br><br>`;
+            댓글.innerHTML = `${el.querySelector("#cmtPosition > ul").innerHTML
+              }<br><br>`;
           } else {
-            댓글.innerHTML = `<br><br>${
-              el.querySelector("#cmtPosition > ul").innerHTML
-            }<br><br>`;
+            댓글.innerHTML = `<br><br>${el.querySelector("#cmtPosition > ul").innerHTML
+              }<br><br>`;
           }
           replDiv.append(댓글);
         } catch {
@@ -362,13 +357,12 @@ function getdiv(link) {
         articleDiv.style.zIndex = "103";
         articleDiv.style.marginLeft = "40px";
         articleDiv.id = "articlediv";
-        articleDiv.innerHTML = `${
-          el.querySelector("#bd_capture > div.rd_body.clear > article > div")
-            .innerHTML
-        }<br><br><br><br>`;
+        articleDiv.innerHTML = `${el.querySelector("#bd_capture > div.rd_body.clear > article > div")
+          .innerHTML
+          }<br><br><br><br>`;
         articleDiv.style.fontSize = "medium";
 
-        articleFrame.style.backgroundColor = "rgba( 255, 255, 255, 0.9 )";
+        articleFrame.style.backgroundColor = "rgba( 255, 255, 255, 1 )";
         //        articleFrame.style.width = "900px";
         //        articleFrame.style.maxWidth = "900px";
         articleFrame.style.opacity = "1";
@@ -382,7 +376,7 @@ function getdiv(link) {
 
         //        replFrame.style.width = "900px";
         //        replFrame.style.maxWidth = "900px";
-        replFrame.style.backgroundColor = "rgba( 255, 255, 255, 0.9 )";
+        replFrame.style.backgroundColor = "rgba( 255, 255, 255, 1 )";
         replFrame.style.minHeight = "150px";
         replFrame.style.zIndex = "102";
         replFrame.style.marginTop = "20px";
@@ -524,7 +518,7 @@ function getdiv(link) {
             .getElementById("bvideojs_muted1")
             .innerHTML.replace(">", "autoplay >");
           document.getElementById("bvideojs_muted1").id = "videojs1";
-        } catch (e) {}
+        } catch (e) { }
         //console.log(1 + imgtag);var clicktitle = document.querySelectorAll(".title.hotdeal_var8");
 
         for (i in imgtag) {
@@ -574,17 +568,17 @@ function getdiv(link) {
           //   console.log(beforeLoad[beforeLoad_num]);
           //   beforeLoad_num++;
           // }
-        } catch {}
+        } catch { }
         let rerepls = document.querySelectorAll(".re_comment");
         try {
           for (let rereplNum = 0; i < rerepls.length; rereplNum++) {
             rerepls[rereplNum].remove();
           }
-        } catch {}
+        } catch { }
 
         let testAutoLinkEls = document.querySelectorAll(".xe_content");
         // console.log(testAutoLinkEls);
-        testAutoLinkEls.forEach(function (item, index) {
+        testAutoLinkEls.forEach(function(item, index) {
           // console.log(item, index);
           toAutoLink(item);
         });
@@ -593,10 +587,10 @@ function getdiv(link) {
         toAutoLink(getAtcForAutoLink);
 
         let bestRerepls = document.querySelectorAll(".fa-location-arrow");
-        bestRerepls.forEach(function (item, index) {
+        bestRerepls.forEach(function(item, index) {
           try {
             item.parentElement.remove();
-          } catch {}
+          } catch { }
         });
         videoVolume();
       } // end
@@ -612,7 +606,7 @@ function getdiv(link) {
 for (const title12 of clicktitle) {
   title12.addEventListener(
     "contextmenu",
-    function () {
+    function() {
       if (document.querySelector("#getarticle") == null) {
         if (articlecheck == false) {
           articlecheck = true;
@@ -640,7 +634,7 @@ for (const title12 of clicktitle) {
 for (const title2 of clicktitle2) {
   title2.addEventListener(
     "contextmenu",
-    function (e) {
+    function(e) {
       e.preventDefault();
       if (document.querySelector("#getarticle") == null) {
         if (articlecheck == false) {
@@ -696,7 +690,7 @@ window.onkeydown = event => {
     if (articlecheck == true) {
       //elFadeOut(document.querySelector("#getarticle"), 300);
       document.querySelector("#getarticle").style.opacity = 0;
-      setTimeout(function () {
+      setTimeout(function() {
         document.querySelector("#getarticle").remove();
       }, 300);
       document.body.style.overflowY = "scroll";
@@ -706,7 +700,7 @@ window.onkeydown = event => {
     }
   }
 };
-document.addEventListener("click", function (e) {
+document.addEventListener("click", function(e) {
   if (articlecheck == true) {
     let el = e.target;
     let r1 = el.closest("#getarticle");
@@ -714,7 +708,7 @@ document.addEventListener("click", function (e) {
     if (!Boolean(r1)) {
       //elFadeOut(document.querySelector("#getarticle"), 300);
       document.querySelector("#getarticle").style.opacity = 0;
-      setTimeout(function () {
+      setTimeout(function() {
         document.querySelector("#getarticle").remove();
       }, 300);
       document.body.style.overflowY = "scroll";
@@ -724,7 +718,7 @@ document.addEventListener("click", function (e) {
   }
 });
 
-document.querySelector("#container").addEventListener("wheel", function (e) {
+document.querySelector("#container").addEventListener("wheel", function(e) {
   if (document.querySelector("#getarticle") != null) {
     if (e.wheelDelta === -120) {
       ////console.log("wheel down");
@@ -739,7 +733,7 @@ document.querySelector("#container").addEventListener("wheel", function (e) {
   ////console.log("currentScrollValue is " + currentScrollValue);
 });
 
-window.onbeforeunload = function () {
+window.onbeforeunload = function() {
   articlecheck = false;
 };
 // var images = document.querySelectorAll("img");
