@@ -35,7 +35,7 @@ function elFadeIn(elem, ms) {
   elem.style.visibility = "visible";
   if (ms) {
     var opacity = 0;
-    var timer = setInterval(function() {
+    var timer = setInterval(function () {
       opacity += 5 / ms;
       if (opacity >= 1) {
         clearInterval(timer);
@@ -55,7 +55,7 @@ function elFadeOut(elem, ms) {
 
   if (ms) {
     var opacity = 1;
-    var timer = setInterval(function() {
+    var timer = setInterval(function () {
       opacity -= 50 / ms;
       if (opacity <= 0) {
         clearInterval(timer);
@@ -87,7 +87,7 @@ function changediv() {
 
 function getrep(link, reppagenum2) {
   var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function() {
+  xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState === xmlHttp.DONE) {
       if (xmlHttp.status === 200) {
         var qw = document.createElement("html");
@@ -104,7 +104,7 @@ function getrep(link, reppagenum2) {
 
 function getdiv(link) {
   var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function() {
+  xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState === xmlHttp.DONE) {
       if (xmlHttp.status === 200) {
         var el = document.createElement("html");
@@ -170,33 +170,34 @@ function getdiv(link) {
           if (bestrep[3] != null) {
             replDiv.append(bestrep[3]);
           }
-        } catch (e) {
-        }
+        } catch (e) {}
 
         try {
           repPg.innerHTML = el.querySelector(
             "#cmtPosition > div.fdb_tag.bg_f_f9.css3pie > div"
           ).innerHTML;
-        } catch (e) { }
+        } catch (e) {}
         try {
-          looknum.innerHTML = `${el.querySelector(".side.fr > span:nth-child(1)").innerHTML
-            }`;
-        } catch (e) { }
+          looknum.innerHTML = `${
+            el.querySelector(".side.fr > span:nth-child(1)").innerHTML
+          }`;
+        } catch (e) {}
         looknum.style.textAlign = "right";
         try {
           uploadDate.innerHTML = `${el.querySelector(".date.m_no").innerHTML}`;
-        } catch (e) { }
+        } catch (e) {}
         uploadDate.style.textAlign = "right";
         try {
           username.innerHTML = `<br>${el.querySelector(".side").innerHTML}`;
-        } catch { }
+        } catch {}
         username.id = "username";
         looknum.style.marginRight = "40px";
         uploadDate.style.marginRight = "40px";
         try {
-          choobanresult.innerHTML = `추천수: ${el.querySelector(".btn_img.new_voted_count").innerText
-            } <br><br>`;
-        } catch (e) { }
+          choobanresult.innerHTML = `추천수: ${
+            el.querySelector(".btn_img.new_voted_count").innerText
+          } <br><br>`;
+        } catch (e) {}
         choobanresult.style.fontFamily = `"Noto Sans CJK KR", sans-serif`;
         choobanresult.style.fontSize = "24px";
         choobanresult.style.fontWeight = "bold";
@@ -210,24 +211,27 @@ function getdiv(link) {
           } else {
             choobanresult.style.color = "gray";
           }
-        } catch { }
+        } catch {}
         try {
-          atcTitle.innerHTML = `<br><br>${el.querySelector(
-            "#bd_capture > div.rd_hd.clear > div.board.clear > div.top_area.ngeb > h1 > span.np_18px_span"
-          ).innerText
-            }`;
-        } catch { }
+          atcTitle.innerHTML = `<br><br>${
+            el.querySelector(
+              "#bd_capture > div.rd_hd.clear > div.board.clear > div.top_area.ngeb > h1 > span.np_18px_span"
+            ).innerText
+          }`;
+        } catch {}
 
         var 댓글 = document.createElement("div");
 
         try {
           // 일반 댓글
           if (bestrepTF === true) {
-            댓글.innerHTML = `${el.querySelector("#cmtPosition > ul").innerHTML
-              }<br><br>`;
+            댓글.innerHTML = `${
+              el.querySelector("#cmtPosition > ul").innerHTML
+            }<br><br>`;
           } else {
-            댓글.innerHTML = `<br><br>${el.querySelector("#cmtPosition > ul").innerHTML
-              }<br><br>`;
+            댓글.innerHTML = `<br><br>${
+              el.querySelector("#cmtPosition > ul").innerHTML
+            }<br><br>`;
           }
           replDiv.append(댓글);
         } catch {
@@ -275,9 +279,10 @@ function getdiv(link) {
         articleDiv.style.zIndex = "103";
         articleDiv.style.marginLeft = "40px";
         articleDiv.id = "articlediv";
-        articleDiv.innerHTML = `${el.querySelector("#bd_capture > div.rd_body.clear > article > div")
-          .innerHTML
-          }<br><br><br><br>`;
+        articleDiv.innerHTML = `${
+          el.querySelector("#bd_capture > div.rd_body.clear > article > div")
+            .innerHTML
+        }<br><br><br><br>`;
         articleDiv.style.fontSize = "medium";
 
         articleFrame.style.backgroundColor = "rgba( 255, 255, 255, 1 )";
@@ -395,15 +400,14 @@ function getdiv(link) {
             .getElementById("bvideojs_muted1")
             .innerHTML.replace(">", "autoplay >");
           document.getElementById("bvideojs_muted1").id = "videojs1";
-        } catch (e) { }
+        } catch (e) {}
 
         for (i in imgtag) {
           try {
             var imgtag1 = imgtag[i].querySelector("img");
             imgtag1.style.maxWidth = "820px";
             imgtag1.style.height = "auto";
-          } catch (e) {
-          }
+          } catch (e) {}
         }
         img_idk();
         img_dataset_origin();
@@ -430,16 +434,16 @@ function getdiv(link) {
               ""
             );
           }
-        } catch { }
+        } catch {}
         let rerepls = document.querySelectorAll(".re_comment");
         try {
           for (let rereplNum = 0; i < rerepls.length; rereplNum++) {
             rerepls[rereplNum].remove();
           }
-        } catch { }
+        } catch {}
 
         let testAutoLinkEls = document.querySelectorAll(".xe_content");
-        testAutoLinkEls.forEach(function(item, index) {
+        testAutoLinkEls.forEach(function (item, index) {
           toAutoLink(item);
         });
 
@@ -447,10 +451,10 @@ function getdiv(link) {
         toAutoLink(getAtcForAutoLink);
 
         let bestRerepls = document.querySelectorAll(".fa-location-arrow");
-        bestRerepls.forEach(function(item, index) {
+        bestRerepls.forEach(function (item, index) {
           try {
             item.parentElement.remove();
-          } catch { }
+          } catch {}
         });
         videoVolume();
       }
@@ -465,7 +469,7 @@ function getdiv(link) {
 for (const title12 of clicktitle) {
   title12.addEventListener(
     "contextmenu",
-    function() {
+    function () {
       if (document.querySelector("#getarticle") == null) {
         if (articlecheck == false) {
           articlecheck = true;
@@ -483,7 +487,7 @@ for (const title12 of clicktitle) {
 for (const title2 of clicktitle2) {
   title2.addEventListener(
     "contextmenu",
-    function(e) {
+    function (e) {
       e.preventDefault();
       if (document.querySelector("#getarticle") == null) {
         if (articlecheck == false) {
@@ -509,12 +513,12 @@ for (const title2 of clicktitle2) {
     false
   );
 }
-window.onkeydown = event => {
+window.onkeydown = (event) => {
   if (event.keyCode == 27) {
     // esc키 눌렀을때
     if (articlecheck == true) {
       document.querySelector("#getarticle").style.opacity = 0;
-      setTimeout(function() {
+      setTimeout(function () {
         document.querySelector("#getarticle").remove();
       }, 300);
       document.body.style.overflowY = "scroll";
@@ -524,14 +528,14 @@ window.onkeydown = event => {
     }
   }
 };
-document.addEventListener("click", function(e) {
+document.addEventListener("click", function (e) {
   if (articlecheck == true) {
     let el = e.target;
     let r1 = el.closest("#getarticle");
     // console.log(Boolean(r1)); // <- 클릭한 부분 부모 중 #getarticle 포함하면 true 반환
     if (!Boolean(r1)) {
       document.querySelector("#getarticle").style.opacity = 0;
-      setTimeout(function() {
+      setTimeout(function () {
         document.querySelector("#getarticle").remove();
       }, 300);
       document.body.style.overflowY = "scroll";
@@ -541,7 +545,7 @@ document.addEventListener("click", function(e) {
   }
 });
 
-document.querySelector("#container").addEventListener("wheel", function(e) {
+document.querySelector("#container").addEventListener("wheel", function (e) {
   if (document.querySelector("#getarticle") != null) {
     if (e.wheelDelta === -120) {
       document.querySelector("#getarticle").scrollTop += 200;
@@ -549,10 +553,9 @@ document.querySelector("#container").addEventListener("wheel", function(e) {
       document.querySelector("#getarticle").scrollTop -= 200;
     }
   }
-
 });
 
-window.onbeforeunload = function() {
+window.onbeforeunload = function () {
   articlecheck = false;
 };
 // // TODO 이미지 클릭시 원본이미지 보여주는 기능 만들고 있는 중
