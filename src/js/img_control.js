@@ -7,7 +7,7 @@ function img_dataset_origin() {
           toSetImgs[i].src = toSetImgs[i].dataset.original;
         }
       }
-    } catch (e) { }
+    } catch (e) {}
   }
 }
 
@@ -22,7 +22,7 @@ function img_idk() {
             let vdw = document.getElementById(`#videojs${z}`);
             vdw.style.maxwidth = "820px";
             vdw.style.height = "auto";
-          } catch (e) { }
+          } catch (e) {}
         }
         try {
           var imgtag1 = imgtag[i].querySelector("video");
@@ -46,10 +46,10 @@ function img_idk() {
           }
           imgtag1.parentElement.style.maxWidth = "820px";
           imgtag1.parentElement.style.height = "auto";
-        } catch (e) { }
+        } catch (e) {}
         try {
           var aTag = document.getElementsByClassName("re_comment");
-        } catch (e) { }
+        } catch (e) {}
         var True_and_false = true;
         try {
           while (True_and_false) {
