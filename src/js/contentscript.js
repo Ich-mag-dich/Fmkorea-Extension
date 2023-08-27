@@ -11,7 +11,9 @@ function videoVolume() {
   console.log(addedVideos.length);
   console.log(localStorage.getItem("fmvolume-volume"));
   for (var vi = 0; vi <= addedVideos.length; vi++) {
-    addedVideos[vi].volume = localStorage.getItem("fmvolume-volume");
+    try {
+      addedVideos[vi].volume = localStorage.getItem("fmvolume-volume");
+    } catch { };
   }
 }
 function toAutoLink(container) {
@@ -546,6 +548,7 @@ function getdiv(link) {
         } catch (e) {
           console.log(e);
         }
+
         // 아래처럼 하면 사진이 3장 이상일때 3장만 나옴
 
         // //document.querySelector("#bd_capture > div.rd_body.clear > article")
